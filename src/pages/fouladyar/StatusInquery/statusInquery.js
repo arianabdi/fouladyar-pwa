@@ -199,31 +199,26 @@ const StatusInquery = ({
         <div className={"titrWrapper"}>
           <button
             className={"btn btn-primary"}
-            onClick={onRefresh}>
-            <div className={"delete"}>
-              <IoMdRefresh size={20} color={
-                number.part1 ||
-                number.part2 ||
-                number.part3 ||
-                number.part4 ||
-                number.part5 ||
-                number.part6 ||
-                number.part7
-                  ? "#206693"
-                  : "#fff"
-              }/>
-
-            </div>
+            onClick={onRefresh
+          }>
+            <IoMdRefresh size={20} color={
+              number.part1 ||
+              number.part2 ||
+              number.part3 ||
+              number.part4 ||
+              number.part5 ||
+              number.part6 ||
+              number.part7
+                ? "#206693"
+                : "#fff"
+            }/>
           </button>
           <span className={"title"}>استعلام وضعیت حواله</span>
           <button className={""} onClick={onDelete}>
-            <div className={"delete"}>
-
-              <IoMdCloseCircleOutline
-                size={35}
-                color={addedT > 0 ? "#d93131" : "#fff"}
-              />
-            </div>
+            <IoMdCloseCircleOutline
+              size={35}
+              color={addedT > 0 ? "#d93131" : "#fff"}
+            />
           </button>
         </div>
         <div className={"inputWrapper"}>
