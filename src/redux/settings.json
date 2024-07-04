@@ -1,0 +1,33 @@
+{
+  "appTitle": "Poshtiban",
+  "appName": "poshtiban-web-app",
+  "appKind": "web-app",
+  "version": "APP_VERSION",
+  "rtl": true,
+  "language": "fa",
+  "displayPriceUnit": "irt",
+  "paymentPriceUnit": "irr",
+  "dashboardUrl": "https://dashboard.poshtiban.com",
+  "siteUrl": "https://poshtiban.com",
+  "apiBase": "https://atoms.poshtiban.com",
+  "apiContentType": "application/json",
+  "mountainUrl": "https://automation-dev.mountain.poshtiban.com",
+  "portalUrl": "https://portal.poshtiban.com",
+  "portalInvoiceUrl": "https://portal.poshtiban.com/my/invoices",
+  "mountainUploadUrl": "https://automation-dev.mountain.poshtiban.com/s3-explorer",
+  "uploadUrl": "https://upload.poshtiban.com",
+  "companionUrl": "https://companion.poshtiban.com",
+  "gaTrackingCode": "UA-33235820-3",
+  "sentryLink": "https://76e568008e064b6b954594fa3a33b642@o390022.ingest.sentry.io/5230657",
+  "perPage": 10,
+  "stripePublicKey": "pk_test_8kd8TXAh8BaBqL3NauDl9zWk00TG3QZAIg",
+  "s3ActiveRegions": ["ir", "de"],
+  "postpaidActiveRegions": ["de"],
+  "recapchaSiteKey": "6LcGlcwZAAAAADQvU9b0vhJb1HcHQaT3N4AU4Jrv",
+  "partitionTabs": {
+    "pro_partitions": ["pro"],
+    "s3_partitions": ["s3"]
+  },
+  "defaultPartitionTab": "pro_partitions",
+  "disabledFeatures": []
+}

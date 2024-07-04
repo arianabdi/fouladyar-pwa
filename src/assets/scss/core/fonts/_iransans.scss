@@ -1,0 +1,41 @@
+// iransans
+@font-face {
+    font-family: 'iransans';
+    src: url('#{$font-url}/UltraLight.ttf');
+    src: local('iransans light'), local('iransans-light'),
+        url('#{$font-url}/UltraLight.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+
+@font-face {
+    font-family: 'iransans';
+    src: url('#{$font-url}/Light.ttf');
+    src: local('iransans regular'), local('iransans-regular'),
+    url('#{$font-url}/Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+
+@font-face {
+    font-family: 'iransans';
+    src: url('#{$font-url}/Medium.ttf');
+    src: local('iransans medium'), local('iransans-medium'),
+    url('#{$font-url}/Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+
+@font-face {
+    font-family: 'iransans';
+    src: url('#{$font-url}/Bold.ttf');
+    src: local('iransans bold'), local('iransans-bold'),
+    url('#{$font-url}/Bold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+

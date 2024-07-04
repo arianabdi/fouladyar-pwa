@@ -1,0 +1,38 @@
+// yekanbakh
+
+@font-face {
+    font-family: 'yekanbakh';
+    src: url('#{$font-url}/YekanBakh-Bold.ttf');
+    src: local('YekanBakh-Bold'), local('YekanBakh-Bold'),
+    url('#{$font-url}/YekanBakh-Bold.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+@font-face {
+    font-family: 'yekanbakh';
+    src: url('#{$font-url}/YekanBakh-Light.ttf');
+    src: local('YekanBakh-Light'), local('YekanBakh-Light'),
+    url('#{$font-url}/YekanBakh-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+@font-face {
+    font-family: 'yekanbakh';
+    src: url('#{$font-url}/YekanBakh-Medium.ttf');
+    src: local('YekanBakh-Medium'), local('YekanBakh-Medium'),
+    url('#{$font-url}/YekanBakh-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+@font-face {
+    font-family: 'yekanbakh';
+    src: url('#{$font-url}/YekanBakh-Regular.ttf');
+    src: local('YekanBakh-Regular'), local('YekanBakh-Regular'),
+    url('#{$font-url}/YekanBakh-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}

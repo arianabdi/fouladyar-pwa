@@ -1,0 +1,15 @@
+{
+    "translation": {
+        "paid": "Paid",
+        "unpaid": "Unpaid",
+        "canceled": "Canceled",
+        "week": "Week",
+        "active": "Active",
+
+        "meal": "Meal",
+        "limitation": "Limitations",
+        "supplement": "Supplement",
+
+        "fill_info": "Fill Info"
+    }
+}

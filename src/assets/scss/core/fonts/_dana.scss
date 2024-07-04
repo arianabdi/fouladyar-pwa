@@ -1,0 +1,24 @@
+// YekanBakh
+@font-face {
+    font-family: 'dana';
+    src: url('#{$font-url}/dana-regular.ttf');
+    src: local('Dana Regular'), local('Dana-Regular'),
+        url('#{$font-url}/dana-regular.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+
+@font-face {
+    font-family: 'dana';
+    src: url('#{$font-url}/dana-bold.ttf');
+    src: local('Dana Bold'), local('Dana-Bold'),
+    url('#{$font-url}/dana-bold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    unicode-range: U+0600-06FF ;
+}
+
+
+
+

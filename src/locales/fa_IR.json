@@ -1,0 +1,14 @@
+{
+    "translation": {
+        "paid": "پرداخت شده",
+        "unpaid": "پرداخت نشده",
+        "canceled": "کنسل شده",
+
+        "active": "فعال",
+        "fill_info": "ثبت اطلاعات",
+        "meal": "وعده غذایی",
+        "limitation": "محدودیت",
+        "supplement": "مکمل",
+        "pending": "در حال بررسی"
+    }
+}

@@ -1,0 +1,11 @@
+
+{
+  "apps" : [
+    {
+      "name"      : "fouladyar-pwa",
+      "script"    : "npx",
+      "interpreter": "none",
+      "args": "serve -s dist -p 8081"
+    }
+  ]
+}
