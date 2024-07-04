@@ -24,6 +24,7 @@ import { TbClockHour4 } from "react-icons/tb";
 import { ErrorToaster } from "../../shared/toaster";
 import { toFarsiNumber } from "../../shared/toFarsiNumber";
 import { ConvertGregorianToJalali } from "../../shared/convertGregorianToJalali";
+import StatusInquery from "../fouladyar/StatusInquery/statusInquery";
 
 function NewsItem({item}) {
   const TruncatedText = ({ text, maxLength = 40 }) => {
@@ -38,13 +39,6 @@ function NewsItem({item}) {
       <div className="news-item-container">
         <div className="news-item-image">
           <img src={item.image} alt="" />
-        </div>
-        <div className="news-item-title">
-          {TruncatedText({text: item.title})}
-        </div>
-        <div className="news-item-date">
-          <TbClockHour4 size={14} color={"#555555"} />
-          {toFarsiNumber(ConvertGregorianToJalali(item.createdAt, false))}
         </div>
       </div>
     </Link>
@@ -140,6 +134,8 @@ const Home = () => {
                       </div>
                     </Slider>
                   </div>
+
+                  <StatusInquery/>
 
                   <div className="news">
                     <div className="d-flex flex-row justify-content-between mb-2 p-4 pb-2">
