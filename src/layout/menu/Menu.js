@@ -243,28 +243,6 @@ const Menu = ({ sidebarToggle, mobileView }) => {
   );
 };
 
-export const FloorMenu = ({ sidebarToggle, mobileView, isSignout }) => {
-  return (
-    <ul className="nk-menu nk-menu-md">
-      {floorMenuItems.map((item) => {
-        return (
-          <MenuItem
-            key={item.text}
-            link={item.link}
-            icon={item.icon}
-            isSignout={item.isSignout}
-            text={item.text}
-            isDivider={item.isDivider}
-            badge={item.badge}
-            sub={item.subMenu}
-            sidebarToggle={sidebarToggle}
-            mobileView={mobileView}
-          />
-        );
-      })
-      }
-    </ul>
-  );
-};
+
 
 export default Menu;

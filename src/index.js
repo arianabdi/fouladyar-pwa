@@ -4,6 +4,7 @@ import { BrowserRouter, HashRouter } from "react-router-dom";
 import App from "./App";
 
 import "./assets/scss/dashlite.scss";
+import "./assets/scss/dashlite_rtl.scss";
 import "./assets/scss/style-email.scss";
 
 import reportWebVitals from "./reportWebVitals";

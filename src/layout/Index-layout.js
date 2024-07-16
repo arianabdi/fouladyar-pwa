@@ -82,6 +82,7 @@ const Layout = ({ title, app, ...props }) => {
                 <Head title={!title && "Loading"} />
                 <AppRoot >
                   <AppMain>
+                    <Sidebar fixed />
                     <AppWrap>
                       <Outlet />
                     </AppWrap>

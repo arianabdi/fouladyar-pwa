@@ -9,7 +9,7 @@
 
 .slider {
   background: unset !important;
-  padding: 20px;
+  padding: 7px;
 }
 
 
@@ -50,8 +50,8 @@
 .wrapper {
   padding: 10px;
   background: #fff;
-  margin: 20px;
-  border-radius: 20px;
+  margin: 30px 7px;
+  border-radius: 9px;
   box-shadow: 0px 3px 6px #d1d1d1;
 }
 .delete {
@@ -332,7 +332,7 @@ a div {
 }
 
 .form-label-group {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
@@ -340,7 +340,7 @@ a div {
 }
 
 .doctor-layout .search-form-checkbox-label {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -362,7 +362,7 @@ a div {
 
 .doctor-layout .patient-title {
 
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 26px !important;
@@ -397,7 +397,7 @@ a div {
 }
 
 .doctor-layout .profile-title {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
@@ -409,8 +409,7 @@ a div {
 }
 
 .doctor-layout .nk-header-app-logo {
-  width: 9rem !important;
-  height: 1.4rem !important;
+  width: 5rem !important;
 }
 
 .doctor-layout .container-fluid-doctor {
@@ -431,15 +430,16 @@ a div {
 }
 
 .doctor-layout .menu-item-text {
-  font-family: 'yekanbakh', serif;
+  font-family: "iransans", serif;
   font-style: normal;
-  font-weight: 400;
-  font-size: 17px !important;
-  color: #001A72;
+  font-weight: 300;
+  font-size: 15px !important;
+  color: #18181a;
+  padding-right: 12px;
 }
 
 .doctor-layout .header-title {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 28px;
@@ -451,7 +451,7 @@ a div {
 }
 
 .doctor-layout .home-profile-username {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 25px;
@@ -549,7 +549,7 @@ a div {
 }
 
 .doctor-layout .qr-title {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 20px;
@@ -557,7 +557,7 @@ a div {
 }
 
 .doctor-layout .qr-description {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -580,7 +580,7 @@ a div {
 }
 
 .doctor-layout .dashboard-summary-thin {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -608,7 +608,7 @@ a div {
 
 .doctor-layout .dashboard-summary-current-session .react-select__single-value {
   color: #ffffff !important;
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
@@ -616,7 +616,7 @@ a div {
 }
 
 .doctor-layout .dashboard-summary-current-session {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 13px;
@@ -628,7 +628,7 @@ a div {
 }
 
 .doctor-layout .dashboard-summary-bold {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
@@ -654,7 +654,7 @@ a div {
 }
 
 .doctor-layout .dashboard-summary-number-big {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -665,7 +665,7 @@ a div {
 }
 
 .doctor-layout table {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
 }
 
 .doctor-layout .purple-status {
@@ -694,16 +694,20 @@ a div {
 }
 
 .doctor-layout .status-text {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
 
 }
-
+.sidebar-container{
+  padding: 30px 0px;
+  height: 100vh;
+}
 
 .doctor-layout .nk-menu-item {
-  padding: 4px 0px !important
+  padding: 2px 10px !important;
+  border-bottom: 1px solid #cbcbcb;
 }
 
 .doctor-layout .profile-avatar {
@@ -721,7 +725,7 @@ a div {
 }
 
 .doctor-layout .profile-info-text {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -882,7 +886,7 @@ a div {
   width: 60px;
   height: 60px;
   background: rgba(26, 160, 180, 0.1);
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   border-radius: 60px;
   font-weight: 700;
@@ -902,7 +906,7 @@ a div {
 .doctor-layout .button-timepicker .rmdp-input {
   background: unset !important;
   color: #fff;
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-weight: 700;
   font-size: 13px !important;
   border: unset;
@@ -913,7 +917,7 @@ a div {
 }
 
 .doctor-layout .home-data-item .text {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
@@ -930,7 +934,7 @@ a div {
 }
 
 .doctor-layout .calendar-event-time {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 12px;
@@ -982,7 +986,7 @@ a div {
 
 .header-icon {
 
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -1050,7 +1054,7 @@ a div {
   border-top-left-radius: 5px !important;
   border-top-right-radius: 5px !important;
 
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
@@ -1192,7 +1196,7 @@ body {
 }
 
 .doctor-layout .ticket .ticket-text {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
@@ -1249,7 +1253,7 @@ body {
 }
 
 .doctor-layout .ticket .ticket-time {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 11px;
@@ -1335,7 +1339,7 @@ body {
   }
 
   .doctor-layout .bottom-nav-bar .text {
-    font-family: 'yekanbakh', serif;
+    font-family: 'iransans', serif;
     font-style: normal;
     font-weight: 700;
     font-size: 0.8rem;
@@ -1409,7 +1413,7 @@ body {
 }
 
 .delete-text-with-trash {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 1rem;
@@ -1425,7 +1429,7 @@ body {
   padding-top: 0px !important;
   padding-bottom: 0px !important;
 
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -1437,7 +1441,7 @@ body {
   display: flex;
   justify-content: center;
   align-content: center;
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 21px;
@@ -1471,7 +1475,7 @@ body {
 
 .doctor-layout .patient-card-mobile .patient-fullname {
   text-align: center;
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
@@ -1482,7 +1486,7 @@ body {
 }
 
 .doctor-layout .patient-card-mobile .status-text {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 17px !important;
@@ -1511,7 +1515,7 @@ body {
 }
 
 .doctor-layout .patient-card-mobile .patient-card-data .key {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
@@ -1520,7 +1524,7 @@ body {
 }
 
 .doctor-layout .patient-card-mobile .patient-card-data .value {
-  font-family: 'yekanbakh', serif;
+  font-family: 'iransans', serif;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -1644,7 +1648,7 @@ body {
 
 
 .otp-form-description {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -1653,7 +1657,7 @@ body {
 
 .otp-form-title {
 
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 22px;
@@ -1711,7 +1715,7 @@ body {
 }
 
 .wallet-credit {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 26px;
@@ -1721,7 +1725,7 @@ body {
 
 
 .profile-name {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -1730,7 +1734,7 @@ body {
 
 .profile-email {
 
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -1755,7 +1759,7 @@ body {
 }
 
 .transaction-item-title {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 17px;
@@ -1765,7 +1769,7 @@ body {
 }
 
 .settings-key-value {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -1774,7 +1778,7 @@ body {
 }
 
 .payment-gateway-key-value {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -1783,7 +1787,7 @@ body {
 }
 
 .payment-gateway-title {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 16px;
@@ -1801,7 +1805,7 @@ body {
 }
 
 .transaction-item-status {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 15px;
@@ -1812,7 +1816,7 @@ body {
 }
 
 .transaction-item-date {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 15px;
@@ -1843,7 +1847,7 @@ body {
 
 .amount-selector-text {
   font-size: 12px;
-  font-family: 'dana';
+  font-family: 'iransans';
 }
 
 .amount-selector {
@@ -1863,7 +1867,7 @@ body {
 }
 
 .dana-noraml {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -1871,7 +1875,7 @@ body {
 }
 
 .payment-gateway-item-title {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -1880,7 +1884,7 @@ body {
 }
 
 .program-item-title {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 24px;
@@ -1898,7 +1902,7 @@ body {
 }
 
 .program-item-status {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -1911,7 +1915,7 @@ body {
 .program-item-date,
 .program-item-type-value,
 .program-item-description {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -1924,14 +1928,15 @@ body {
   width: 100%;
   height: 4rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  padding: 0rem 1.5rem;
+  padding: 0rem 1rem;
   position: fixed;
+  align-items: center;
   top: 0px;
   z-index: 20;
 }
 
 .fixed-header .fixed-header-title {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 23px;
@@ -1974,7 +1979,7 @@ body {
 
 
 .package-price {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -2021,7 +2026,7 @@ body {
 }
 
 .exercise-item-title {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 18px;
@@ -2029,7 +2034,7 @@ body {
 }
 
 .exercise-item-sets {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -2046,7 +2051,7 @@ body {
 
 .tabButton {
   height: 3rem;
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 17px;
@@ -2082,14 +2087,14 @@ body {
 
 .diet-item-type {
   color: #fff;
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 12px;
 }
 
 .diet-item-title {
-  font-family: 'dana';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 700;
   font-size: 14px;
@@ -2097,7 +2102,7 @@ body {
 }
 
 .diet-item-suggestions-item {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -2126,7 +2131,7 @@ body {
 }
 
 .news-item-title {
-  font-family: 'yekanbakh';
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -2135,7 +2140,7 @@ body {
 
 .react-select__single-value,
 .form-control {
-  font-family: 'yekanbakh' !important;
+  font-family: 'iransans' !important;
   font-style: normal;
 }
 
@@ -2171,14 +2176,14 @@ body {
 
 
 .post-title {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 19px;
 }
 
 .post-date {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -2186,7 +2191,7 @@ body {
 }
 
 .post-category {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
@@ -2203,7 +2208,7 @@ body {
 }
 
 .post-content {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -2211,7 +2216,7 @@ body {
 
 
 .settings-title {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
@@ -2221,7 +2226,7 @@ body {
 }
 
 .application-version {
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -2243,7 +2248,7 @@ body {
 }
 
 .setting-options-text {
-  font-family: dana !important;
+  font-family: 'iransans' !important;
   font-style: normal;
   font-weight: 500;
   font-size: 15px;
@@ -2257,7 +2262,7 @@ body {
 
 .setting-options-title {
   color: #101010 !important;
-  font-family: dana;
+  font-family: 'iransans';
   font-style: normal;
   font-weight: 500;
   font-size: 19px;

@@ -55,6 +55,15 @@ const Home = () => {
   const [newsFeedItems, setNewsFeedItems] = useState([]);
   const [eventFeedItems, setEventFeedItems] = useState([]);
 
+  const [number, setNumber] = useState({
+    part1: "",
+    part2: "",
+    part3: "",
+    part4: "",
+    part5: "",
+    part6: "",
+    part7: ""
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalComponent, setModalComponent] = useState(<div>empty</div>);
 
@@ -135,7 +144,9 @@ const Home = () => {
                     </Slider>
                   </div>
 
-                  <StatusInquery/>
+                  <StatusInquery
+                    number={number}
+                  />
 
                   <div className="news">
                     <div className="d-flex flex-row justify-content-between mb-2 p-4 pb-2">

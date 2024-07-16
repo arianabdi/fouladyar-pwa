@@ -9,9 +9,9 @@
         max-height: calc(100vh - #{$header-height});
         background: $content-sidebar-bg-color;
         z-index: 1021;
-        left: 0;
+        right: 0;
         border-right: 1px solid $content-sidebar-border-color;
-        transform: translateX(-100%);
+        transform: translateX(100%);
         transition: left $sidebar-transition-duration $sidebar-transition-name,transform $sidebar-transition-duration $sidebar-transition-name;
         &.is-light{
             background: $white;

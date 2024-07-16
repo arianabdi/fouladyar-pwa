@@ -345,14 +345,14 @@ const StatusInquery = ({
               </>
             )}
           </div>
-          {
-            toFarsiNumber(`${_number.part1 || "----"}/${_number.part2 || "----"}/${
-              _number.part3 || "----"
-            }/${_number.part4 || "----"}`) +
-            (addedT > 0 ? toFarsiNumber(`/${_number.part5 || "----"}`) : ``) +
-            (addedT > 1 ? toFarsiNumber(`/${_number.part6 || "----"}`) : ``) +
-            (addedT > 2 ? toFarsiNumber(`/${_number.part7 || "----"}`) : ``)
-          }
+          {/*{*/}
+          {/*  toFarsiNumber(`${_number.part1 || "----"}/${_number.part2 || "----"}/${*/}
+          {/*    _number.part3 || "----"*/}
+          {/*  }/${_number.part4 || "----"}`) +*/}
+          {/*  (addedT > 0 ? toFarsiNumber(`/${_number.part5 || "----"}`) : ``) +*/}
+          {/*  (addedT > 1 ? toFarsiNumber(`/${_number.part6 || "----"}`) : ``) +*/}
+          {/*  (addedT > 2 ? toFarsiNumber(`/${_number.part7 || "----"}`) : ``)*/}
+          {/*}*/}
 
           {showErr && (
             <span className={"errorText"}>

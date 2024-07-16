@@ -2,68 +2,46 @@ import { FiActivity, FiHelpCircle, FiHome, FiPenTool, FiShield, FiUserCheck } fr
 import React from "react";
 import { LuCalendar, LuLogOut } from "react-icons/lu";
 import { RxDashboard } from "react-icons/rx";
-import { RiProfileLine } from "react-icons/ri";
+import {RiPagesLine, RiProfileLine} from "react-icons/ri";
+import {IoVideocamSharp} from "react-icons/io5";
+import {MdInfoOutline, MdNewspaper, MdOutlineStoreMallDirectory} from "react-icons/md";
+import {IoMdHome} from "react-icons/io";
 
 const fontSize = 20;
 const color = "#555555"
 
 const menu = [
   {
-    icon: <FiHome size={fontSize} color={color} />,
-    text: "Page d’accueil",
+    icon: <IoMdHome size={fontSize} color={color} />,
+    text: "خانه",
     link: "/home",
   },
   {
-    icon: <FiUserCheck size={fontSize} color={color} />,
-    text: "Patients",
-    link: "/patients",
+    icon: <MdNewspaper size={fontSize} color={color} />,
+    text: "اخبار",
+    link: "/news",
   },
   {
-    icon: <LuCalendar size={fontSize} color={color} />,
-    text: "Calendrier",
-    link: "/calendar",
+    icon: <RiPagesLine size={fontSize} color={color} />,
+    text: "مقالات",
+    link: "/posts",
   },
   {
-    isDivider: true,
+    icon: <MdInfoOutline size={fontSize} color={color} />,
+    text: "درباره ما",
+    link: "/about-us",
   },
   {
-    icon: <FiPenTool size={fontSize} color={color} />,
-    text: "Thème",
-    link: "/theme",
+    icon: <MdOutlineStoreMallDirectory size={fontSize} color={color} />,
+    text: "محصولات",
+    link: "/products",
   },
   {
-    icon: <FiActivity size={fontSize} color={color} />,
-    text: "Analyses",
-    link: "/analyses",
-  },
-  {
-    icon: <RxDashboard size={fontSize} color={color} />,
-    text: "QR Code / URL",
-    link: "/qr-code",
+    icon: <IoVideocamSharp size={fontSize} color={color} />,
+    text: "ویدیوها",
+    link: "/videos",
   },
 ];
 
-export const floorMenuItems = [
-  {
-    link: '/contact-us',
-    text: "Contacter le support",
-    icon: <FiHelpCircle size={20} color={"#555555"} />
-  },
-  {
-    link: '/account/terms-and-conditions',
-    text: "Conditions généralesales",
-    icon: <FiShield size={20} color={"#555555"} />
-  },
-  {
-    link: '/account/privacy-policy',
-    text: "Politique de confidentialité",
-    icon: <FiShield size={20} color={"#555555"} />
-  },
-  {
-    // link: '/login',
-    text: "Se déconnecter",
-    isSignout: true,
-    icon: <LuLogOut size={20} color={"#555555"} />
-  },
-]
+
 export default menu;

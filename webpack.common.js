@@ -10,7 +10,7 @@ const HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
-  entry: './src/statusInquery.js',
+  entry: './src/index.js',
   output: {
     filename: 'server.js',
     publicPath: process.env.PUBLIC_URL || '/',
