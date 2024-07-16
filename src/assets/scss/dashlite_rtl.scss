@@ -56,6 +56,66 @@
   gap: 4px;
 }
 
+.news-feed{
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  padding: 0px 11px !important;
+}
+
+
+.news-feed .news-feed-item-container{
+  color: #000000;
+  background: #fff;
+  box-shadow: 0px 3px 4px 1px #d5d5d5;
+  margin: 10px 0px;
+  border-radius: 15px;
+  padding: 20px 10px;
+  font-family: "iransans", serif;
+  gap: 19px;
+  display: flex;
+  flex-direction: column;
+}
+.news-feed .news-feed-item-container .news-title{
+  color: #000000;
+  font-weight: 800;
+  font-family: 'iransans';
+  font-size: 16px;
+}
+
+.news-feed .news-feed-item-container .news-item-image{
+
+  color: #000000;
+}
+
+
+.news-feed .news-summury{
+  color: #000000;
+}
+
+.news-feed .news-more-btn{
+  color: #fff;
+  background: #1F6692;
+  padding: 6px 20px;
+  border: unset !important;
+  border-radius: 6px;
+  font-size: 16px;
+}
+.news-feed .news-date{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  font-size: 17px;
+}
+.news-feed-image{
+  display: flex;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+
 //================================================old code=========================================
 
 .diet-cancel-btn{

@@ -1,5 +1,5 @@
 import React from "react";
-import {IoArrowBackOutline, IoMenuOutline} from "react-icons/io5";
+import {IoArrowForwardSharp, IoMenuOutline} from "react-icons/io5";
 import {useTheme, useThemeUpdate} from '../provider/Theme';
 import classNames from "classnames";
 import headerLogo from "../../assets/images/fouladyar/headerLogo.png";
@@ -27,8 +27,10 @@ export function FixedHeader({title, useBack, fixed, className}) {
                             <IoMenuOutline size={30} color={"#000"}/>
                         </div>
                     </div> :
-                    <div className="fixed-header-back" onClick={()=>{history.back()}}>
-                        <IoArrowBackOutline   size={22} color={"#4f5050"} />
+                    <div className="fixed-header-back" onClick={() => {
+                        history.back()
+                    }}>
+                        <IoArrowForwardSharp size={22} color={"#4f5050"}/>
                     </div>
             }
             <div className="fixed-header-title">

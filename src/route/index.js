@@ -18,6 +18,7 @@ import Post from "../pages/post";
 import UserSpecificationForm from "../pages/userSpecificationForm";
 import Payment from "../pages/payment";
 import Settings from "../pages/settings";
+import News from "../pages/fouladyar/news";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -39,11 +40,11 @@ const Pages = () => {
                 {/*<Route path="/verify-otp" element={<VerifyOtp />}></Route>*/}
 
                 <Route path="" element={<Layout/>}>
-                    {/*fitness academic*/}
+                    {/*Fouladyar*/}
                     <Route path="/home" element={<Home/>}></Route>
                     <Route path="/profile" element={<ProfileInDoctorDashboard/>}></Route>
-                    <Route path="/programs" element={<Programs/>}></Route>
-                    <Route path="/post" element={<Post/>}></Route>
+                    <Route path="/chat" element={<Programs/>}></Route>
+                    <Route path="/news" element={<News/>}></Route>
                     <Route path="/user-specification" element={<UserSpecificationForm/>}></Route>
                     <Route path="/wallet" element={<Wallet/>}></Route>
                     <Route path="/payment-method/:packageId" element={<Payment/>}></Route>
