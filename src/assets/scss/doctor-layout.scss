@@ -13,18 +13,22 @@
 }
 
 
+.news a  svg{
+ margin: 0px 3px;
+}
+
 .news a {
   font-family: 'iransans';
   color: #206693;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 16px;
 
 }
 
 .news-heading {
   font-family: 'iransans';
   font-weight: 900;
-  font-size: 18px;
+  font-size: 16px;
   text-align: center;
 
 }
@@ -61,7 +65,7 @@
 }
 
 .titrWrapper {
-  flex-direction: row;
+  flex-direction: row-reverse;
   justify-content: space-between;
   align-items: center;
   display: flex;
@@ -113,6 +117,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 5px;
 }
 .inputWrapp {
   flex: 1;
@@ -134,6 +139,7 @@
   flex-direction: column;
   gap: 10px;
   height: 120px;
+  direction: ltr !important;
 }
 
 
@@ -141,13 +147,14 @@
   color: #000;
   font-size: 14px;
   flex: 1;
-  // marginLeft: wp(1);
-  background-color: #ccc;
-  height: 50px;
+  background-color: #e3e3e3 !important;
+  height: 48px;
   margin-top: 10px;
   text-align: center;
+  border: unset !important;
   margin-bottom: 5px;
-  border-radius: 5px;
+  border-radius: 5px !important;
+  padding: 1rem !important;
 }
 .container {
   width: 100%;
@@ -1311,7 +1318,7 @@ body {
   }
   .doctor-layout .bottom-nav-bar {
     position: fixed;
-    bottom: 0;
+    bottom: -1px;
     left: 0;
     width: 100%;
     background-color: #fff;
@@ -1319,7 +1326,10 @@ body {
     display: flex !important;
     justify-content: space-around;
     padding: 10px;
-    z-index: 10
+    z-index: 10;
+    height: 4rem;
+    align-items: center;
+    border-top: 1px solid #a5a5a5;
   }
 
   .doctor-layout .bottom-nav-bar .nav-item {
@@ -1936,11 +1946,11 @@ body {
 }
 
 .fixed-header .fixed-header-title {
-  font-family: 'iransans';
+  font-family: "iransans";
   font-style: normal;
   font-weight: 400;
-  font-size: 23px;
-  color: #000000;
+  font-size: 17px;
+  color: #858585;
   padding: 0.6rem 0rem;
 }
 

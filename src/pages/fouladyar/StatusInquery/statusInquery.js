@@ -7,6 +7,7 @@ import { toFarsiNumber } from "../../../shared/toFarsiNumber";
 import { Button } from "reactstrap";
 import Icon from "react-multi-date-picker/components/icon";
 import { IoMdCloseCircleOutline, IoMdRefresh } from "react-icons/io";
+import {CgCloseO} from "react-icons/cg";
 
 // export interface trackNumberType {
 //   part1: string;
@@ -81,25 +82,25 @@ const StatusInquery = ({
     }
   }, [trackingNumber]);
   const setNum1 = (t) => {
-    set_number({ ..._number, part1: t });
+    set_number({ ..._number, part1: t || ''  });
   };
   const setNum2 = (t) => {
-    set_number({ ..._number, part2: t });
+    set_number({ ..._number, part2: t || ''  });
   };
   const setNum3 = (t) => {
-    set_number({ ..._number, part3: t });
+    set_number({ ..._number, part3: t || ''  });
   };
   const setNum4 = (t) => {
-    set_number({ ..._number, part4: t });
+    set_number({ ..._number, part4: t || ''  });
   };
   const setNum5 = (t) => {
-    set_number({ ..._number, part5: t });
+    set_number({ ..._number, part5: t || ''  });
   };
   const setNum6 = (t) => {
-    set_number({ ..._number, part6: t });
+    set_number({ ..._number, part6: t || ''  });
   };
   const setNum7 = (t) => {
-    set_number({ ..._number, part7: t });
+    set_number({ ..._number, part7: t || '' });
   };
   const onSubmit = () => {
     if (addedT === 0) {
@@ -195,51 +196,48 @@ const StatusInquery = ({
   };
   return (
     <div className={"wrapper"}>
-      <div className={"container"}>
-        <div className={"titrWrapper"}>
-          <button
-            className={"btn btn-primary"}
+
+      <div className={"titrWrapper"}>
+        <button
+            className={"btn btn-primary custom-icon-button"}
             onClick={onRefresh
-          }>
-            <IoMdRefresh size={20} color={
-              number.part1 ||
-              number.part2 ||
-              number.part3 ||
-              number.part4 ||
-              number.part5 ||
-              number.part6 ||
-              number.part7
+            }>
+          <IoMdRefresh size={30} color={
+            _number.part1 ||
+            _number.part2 ||
+            _number.part3 ||
+            _number.part4 ||
+            _number.part5 ||
+            _number.part6 ||
+            _number.part7
                 ? "#206693"
                 : "#fff"
-            }/>
-          </button>
-          <span className={"title"}>استعلام وضعیت حواله</span>
-          <button className={""} onClick={onDelete}>
-            <IoMdCloseCircleOutline
-              size={35}
+          }/>
+        </button>
+        <span className={"title"}>استعلام وضعیت حواله</span>
+        <button className={"custom-icon-button"} onClick={onDelete}>
+          <CgCloseO
+              size={30}
               color={addedT > 0 ? "#d93131" : "#fff"}
-            />
-          </button>
-        </div>
-        <div className={"inputWrapper"}>
-          <div className={"inputList"}>
-            <div className={"inputWrapp"}>
-              <Field
-                className={"textInput"}
+          />
+        </button>
+      </div>
+      <div className={"inputWrapper"}>
+        <div className={"inputList"}>
+          <div className={"inputWrapp"}>
+            <Field
+                className={"textInput num1"}
                 onFocus={() => setFocusedTextInput(1)}
                 maxLength={10}
-                onChangeText={setNum1}
+                onChange={setNum1}
                 value={_number.part1}
                 // placeholder={'1400/103/4729016/3'}
-                keyboardType={"numeric"}
-              />
-            </div>
-            <div className={"slashWrapper"}>
-              <span className={"slash"}>/</span>
-            </div>
-            <div className={"inputWrapp"}>
-              <Field
-                className={"textInput"}
+                type={"number"}
+            />
+          </div>
+          <div className={"inputWrapp"}>
+            <Field
+                className={"textInput num2"}
                 onFocus={() => setFocusedTextInput(2)}
                 maxLength={10}
                 onChange={setNum2}
@@ -247,137 +245,121 @@ const StatusInquery = ({
                 // placeholderTextColor={CColor.gray}
                 // placeholder={'1400/103/4729016/3'}
                 type={"number"}
-              />
-            </div>
-            <div className={"slashWrapper"}>
-              <span className={"slash"}>/</span>
-            </div>
-            <div
+            />
+          </div>
+          <div
               className={"inputWrapp"}>
-              <Field
-                className={"textInput"}
-                onFocus={() => setFocusedTextInput(2)}
+            <Field
+                className={"textInput num3"}
+                onFocus={() => setFocusedTextInput(3)}
                 maxLength={10}
-                onChange={setNum2}
-                value={_number.part2}
+                onChange={setNum3}
+                value={_number.part3}
                 // placeholderTextColor={CColor.gray}
                 // placeholder={'1400/103/4729016/3'}
                 type={"number"}
-              />
-            </div>
+            />
+          </div>
 
-            <div className={"slashWrapper"}>
-              <span className={"slash"}>/</span>
-            </div>
-            <div
+
+          <div
               className={"inputWrapp"}>
-              <Field
-                className={"textInput"}
-                onFocus={() => setFocusedTextInput(2)}
+            <Field
+                className={"textInput num4"}
+                onFocus={() => setFocusedTextInput(4)}
                 maxLength={10}
-                onChange={setNum2}
-                value={_number.part2}
+                onChange={setNum4}
+                value={_number.part4}
                 // placeholderTextColor={CColor.gray}
                 // placeholder={'1400/103/4729016/3'}
                 type={"number"}
-              />
-            </div>
+            />
+          </div>
 
-            {/* added 1 */}
-            {addedT > 0 && (
-              <>
-                <div className={"slashWrapper"}>
-                  <span className={"slash"}>/</span>
-                </div>
+          {/* added 1 */}
+          {addedT > 0 && (
+
                 <div className={"inputWrapp"}>
                   <Field
-                    className={"textInput"}
-                    onFocus={() => setFocusedTextInput(2)}
-                    maxLength={10}
-                    onChange={setNum2}
-                    value={_number.part2}
-                    // placeholderTextColor={CColor.gray}
-                    // placeholder={'1400/103/4729016/3'}
-                    type={"number"}
+                      className={"textInput num5"}
+                      onFocus={() => setFocusedTextInput(5)}
+                      maxLength={10}
+                      onChange={setNum5}
+                      value={_number.part5}
+                      // placeholderTextColor={CColor.gray}
+                      // placeholder={'1400/103/4729016/3'}
+                      type={"number"}
                   />
                 </div>
-              </>
-            )}
-            {/* added 2 */}
-            {addedT > 1 && (
-              <>
-                <div className={"slashWrapper"}>
-                  <span className={"slash"}>/</span>
-                </div>
-                <div
-                  className={"inputWrapp"}>
-                  <Field
-                    className={"textInput"}
-                    onFocus={() => setFocusedTextInput(2)}
-                    maxLength={10}
-                    onChange={setNum2}
-                    value={_number.part2}
-                    // placeholder={'1400/103/4729016/3'}
-                    type={"number"}
-                  />
-                </div>
-              </>
-            )}
-            {/* added 3 */}
-            {addedT > 2 && (
-              <>
-                <div className={"slashWrapper"}>
-                  <span className={"slash"}>/</span>
-                </div>
-                <div
-                  className={"inputWrapp"}>
-                  <Field
-                    className={"textInput"}
-                    onFocus={() => setFocusedTextInput(2)}
-                    maxLength={10}
-                    onChange={setNum2}
-                    value={_number.part2}
-                    // placeholderTextColor={CColor.gray}
-                    // placeholder={'1400/103/4729016/3'}
-                    type={"number"}
-                  />
-                </div>
-              </>
-            )}
-          </div>
-          {/*{*/}
-          {/*  toFarsiNumber(`${_number.part1 || "----"}/${_number.part2 || "----"}/${*/}
-          {/*    _number.part3 || "----"*/}
-          {/*  }/${_number.part4 || "----"}`) +*/}
-          {/*  (addedT > 0 ? toFarsiNumber(`/${_number.part5 || "----"}`) : ``) +*/}
-          {/*  (addedT > 1 ? toFarsiNumber(`/${_number.part6 || "----"}`) : ``) +*/}
-          {/*  (addedT > 2 ? toFarsiNumber(`/${_number.part7 || "----"}`) : ``)*/}
-          {/*}*/}
 
-          {showErr && (
+          )}
+          {/* added 2 */}
+          {addedT > 1 && (
+
+                <div
+                    className={"inputWrapp"}>
+                  <Field
+                      className={"textInput num6"}
+                      onFocus={() => setFocusedTextInput(6)}
+                      maxLength={10}
+                      onChange={setNum6}
+                      value={_number.part6}
+                      // placeholder={'1400/103/4729016/3'}
+                      type={"number"}
+                  />
+                </div>
+
+          )}
+          {/* added 3 */}
+          {addedT > 2 && (
+
+                <div className={"inputWrapp"}>
+                  <Field
+                      className={"textInput num7"}
+                      onFocus={() => setFocusedTextInput(7)}
+                      maxLength={10}
+                      onChange={setNum7}
+                      value={_number.part7}
+                      // placeholderTextColor={CColor.gray}
+                      // placeholder={'1400/103/4729016/3'}
+                      type={"number"}
+                  />
+                </div>
+
+          )}
+        </div>
+        {
+            toFarsiNumber(`${_number.part1 || "----"}/${_number.part2 || "----"}/${
+                _number.part3 || "----"
+            }/${_number.part4 || "----"}`) +
+            (addedT > 0 ? toFarsiNumber(`/${_number.part5 || "----"}`) : ``) +
+            (addedT > 1 ? toFarsiNumber(`/${_number.part6 || "----"}`) : ``) +
+            (addedT > 2 ? toFarsiNumber(`/${_number.part7 || "----"}`) : ``)
+        }
+
+        {showErr && (
             <span className={"errorText"}>
               فرمت کد رهگیری وارد شده اشتباه می باشد!
             </span>
-          )}
-        </div>
-        <div className={"buttonWrapper"}>
+        )}
+      </div>
+      <div className={"buttonWrapper"}>
 
-          <button
+        <button
             className="outline width-40"
             disabled={loading}
             onClick={onAddClick}
-          >
-            افزایش اعشار
-          </button>
+        >
+          افزایش اعشار
+        </button>
 
-          <button
+        <button
             className={"width-60"}
             disabled={loading}
             onClick={onSubmit}
-          >
-            استعلام وضعیت
-          </button>
-        </div>
+        >
+          استعلام وضعیت
+        </button>
       </div>
     </div>
   );

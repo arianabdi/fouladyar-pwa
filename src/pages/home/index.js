@@ -25,6 +25,8 @@ import { ErrorToaster } from "../../shared/toaster";
 import { toFarsiNumber } from "../../shared/toFarsiNumber";
 import { ConvertGregorianToJalali } from "../../shared/convertGregorianToJalali";
 import StatusInquery from "../fouladyar/StatusInquery/statusInquery";
+import {IoMenuOutline} from "react-icons/io5";
+import {FaArrowLeft} from "react-icons/fa";
 
 function NewsItem({item}) {
   const TruncatedText = ({ text, maxLength = 40 }) => {
@@ -153,6 +155,7 @@ const Home = () => {
                       <div className="news-heading">آخرین محصولات</div>
                       <Link to={"/last-news"}>
                         مشاهده همه
+                        <FaArrowLeft  size={13} color={"#206693"}/>
                       </Link>
                     </div>
                     <div className="news-container p-4 pt-0">

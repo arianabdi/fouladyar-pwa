@@ -15,6 +15,9 @@ import { HiOutlineUser } from "react-icons/hi";
 import { GrHomeRounded } from "react-icons/gr";
 import { MdPersonOutline } from "react-icons/md";
 import { TbHome } from "react-icons/tb";
+import {BiRadar, BiSolidMessageRounded} from "react-icons/bi";
+import {BsFillChatFill} from "react-icons/bs";
+import {IoMdHome} from "react-icons/io";
 
 const Layout = ({ title, app, ...props }) => {
 
@@ -104,9 +107,9 @@ export const BottomNavBar = ({  ...props }) => {
 
   return(
     <div className="bottom-nav-bar">
-      <NavItem link={'/home'} icon={<TbHome  size={28} color={"#060606"}/>} text={t('خانه')}/>
-      <NavItem link={'/programs'} icon={<LuClipboardList    size={28} color={"#060606"}/>} text={t('برنامه ها')}/>
-      <NavItem link={'/profile'} icon={<MdPersonOutline    size={28} color={"#060606"}/>} text={t('پروفایل')}/>
+      <NavItem link={'/home'} icon={<IoMdHome size={20} color={"#060606"}/>} text={t('خانه')}/>
+      <NavItem link={'/programs'} icon={<BiRadar size={20} color={"#060606"}/>} text={t('رهگیری حواله')}/>
+      <NavItem link={'/chat'} icon={<BiSolidMessageRounded size={20} color={"#060606"}/>} text={t('چت')}/>
     </div>
   )
 }
