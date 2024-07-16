@@ -20,6 +20,7 @@ import Payment from "../pages/payment";
 import Settings from "../pages/settings";
 import News from "../pages/fouladyar/news";
 import Products from "../pages/fouladyar/products";
+import ProductDetail from "../pages/fouladyar/productDetail";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -47,7 +48,10 @@ const Pages = () => {
                     <Route path="/chat" element={<Programs/>}></Route>
                     <Route path="/news" element={<News/>}></Route>
                     <Route path="/products" element={<Products/>}></Route>
-                    <Route path="/wallet" element={<Wallet/>}></Route>
+                    <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>
+
+
+
                     <Route path="/payment-method/:packageId" element={<Payment/>}></Route>
                     <Route path="/packages" element={<Packages/>}></Route>
                     <Route path="/exercise-list" element={<ProgramDetail/>}></Route>

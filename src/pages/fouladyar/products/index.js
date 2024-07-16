@@ -14,22 +14,16 @@ import {ConvertGregorianToJalali} from "../../../shared/convertGregorianToJalali
 import {RiCalendar2Line} from "react-icons/ri";
 import {LoadingState} from "../../../components/fouladyar/loading-state/loadingState";
 
-function ProductItem({item}) {
-    const TruncatedText = ({text, maxLength = 40}) => {
-        const truncatedText = text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
-
-        return <span>{truncatedText}</span>;
-    };
-
+function ProductItem({item, onClick}) {
     return (
-
-
         <div className="product-feed-item-container">
-            <Link className="product-image-container" to={`${process.env.PUBLIC_URL}/post?postId=`}>
+            <div className="product-image-container" onClick={() => {
+               onClick()
+            }}>
                 <div className="product-feed-image">
                     <img src={item.image} alt=""/>
                 </div>
-            </Link>
+            </div>
         </div>
 
     );
@@ -66,6 +60,13 @@ const Products = () => {
                     return ({
                         id: item.id,
                         image: item?.images[0]?.src,
+                        item: {
+                            images: item.images,
+                            name: item.name,
+                            description: item.description,
+                            date: item.date_created,
+                            permalink: item.permalink,
+                        }
                     })
                 }))
                 // setNewsFeedItems(res.data.data.news);
@@ -118,12 +119,16 @@ const Products = () => {
                         <div className={'modal-loading-state'}><LoadingState/></div> :
                         products.map(item => {
                             return (
-                                <ProductItem item={item}/>
+                                <ProductItem
+                                    item={item}
+                                    onClick={() => {
+                                        navigate(`/product-detail/${item.id}`, {state: item.item})
+                                    }}
+                                />
                             )
                         })
                 }
             </div>
-            <BottomNavBar/>
         </React.Fragment>
 
     );
