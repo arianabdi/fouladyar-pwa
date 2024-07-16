@@ -141,6 +141,23 @@ display: flex;
   font-size: 16px;
   font-family: "iransans", serif;
 }
+
+
+
+.login-context{
+  font-family: "iransans", serif;
+  display: flex;
+  padding: 50px 10px;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 150px;
+}
+.login-title{
+  font-size: 25px;
+}
+.login-description{
+  font-size: 17px;
+}
 .news-feed-image{
   display: flex;
   overflow: hidden;

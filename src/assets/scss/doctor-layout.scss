@@ -78,6 +78,13 @@
   flex: 4;
   text-align: center
 }
+
+
+.forgot-password{
+  color: #206693;
+}
+
+.fouladyar-blue-button,
 .buttonWrapper button{
   background: #206693;
   border: unset !important;
@@ -465,8 +472,11 @@ a div {
   color: #060606;
 }
 
-.doctor-layout .divider {
+.divider {
   width: 100%;
+  height: 1px;
+  margin: 18px 0px !important;
+  background: #000000;
 }
 
 .doctor-layout .profile-container {
@@ -747,9 +757,6 @@ a div {
   overflow: hidden;
 }
 
-.doctor-layout .divider {
-  margin: 18px 0px !important
-}
 
 .doctor-layout .nk-header-tools {
   margin-left: unset !important;

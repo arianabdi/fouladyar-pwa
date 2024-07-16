@@ -108,8 +108,8 @@ export const BottomNavBar = ({  ...props }) => {
   return(
     <div className="bottom-nav-bar">
       <NavItem link={'/home'} icon={<IoMdHome size={20} color={"#060606"}/>} text={t('خانه')}/>
-      <NavItem link={'/programs'} icon={<BiRadar size={20} color={"#060606"}/>} text={t('رهگیری حواله')}/>
-      <NavItem link={'/chat'} icon={<BiSolidMessageRounded size={20} color={"#060606"}/>} text={t('چت')}/>
+      <NavItem link={'/tracking'} icon={<BiRadar size={20} color={"#060606"}/>} text={t('رهگیری حواله')}/>
+      <NavItem link={'/login'} icon={<BiSolidMessageRounded size={20} color={"#060606"}/>} text={t('چت')}/>
     </div>
   )
 }

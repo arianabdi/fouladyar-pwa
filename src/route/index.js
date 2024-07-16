@@ -21,6 +21,8 @@ import Settings from "../pages/settings";
 import News from "../pages/fouladyar/news";
 import Products from "../pages/fouladyar/products";
 import ProductDetail from "../pages/fouladyar/productDetail";
+import Tracking from "../pages/fouladyar/tracking";
+import Login from "../pages/fouladyar/login";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -49,6 +51,8 @@ const Pages = () => {
                     <Route path="/news" element={<News/>}></Route>
                     <Route path="/products" element={<Products/>}></Route>
                     <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>
+                    <Route path="/tracking" element={<Tracking/>}></Route>
+                    <Route path="/login" element={<Login/>}></Route>
 
 
 
