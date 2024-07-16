@@ -142,8 +142,44 @@ display: flex;
   font-family: "iransans", serif;
 }
 
+.chat-from .name {
+  font-size: 13px;
+}
+.chat-link {
+  padding: 5px 14px;
+}
 
-
+.is-unread .chat-context .status {
+  background: #00F;
+  height: 24px;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0px;
+  padding-top: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
+  margin: auto;
+  padding-left: 5px;
+  font-size: 12px;
+  padding-top: 2px;
+  color: #fff;
+  font-weight: 300;
+  padding-right: 5px;
+  min-width: 24px;
+}
+.chat-item-container{
+  display: flex;
+  padding: 20px 10px;
+  flex-direction: row;
+  border-bottom: 1px solid #c5c5c5;
+  font-family: 'iransans';
+}
+.chat-media + .chat-info{
+  margin-right: 1rem !important;
+  margin-left: unset !important;
+}
 .login-context{
   font-family: "iransans", serif;
   display: flex;

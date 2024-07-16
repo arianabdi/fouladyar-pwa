@@ -23,6 +23,7 @@ import Products from "../pages/fouladyar/products";
 import ProductDetail from "../pages/fouladyar/productDetail";
 import Tracking from "../pages/fouladyar/tracking";
 import Login from "../pages/fouladyar/login";
+import ChatList from "../pages/fouladyar/chatList";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -47,7 +48,7 @@ const Pages = () => {
                     {/*Fouladyar*/}
                     <Route path="/home" element={<Home/>}></Route>
                     <Route path="/profile" element={<ProfileInDoctorDashboard/>}></Route>
-                    <Route path="/chat" element={<Programs/>}></Route>
+                    <Route path="/chat-list" element={<ChatList/>}></Route>
                     <Route path="/news" element={<News/>}></Route>
                     <Route path="/products" element={<Products/>}></Route>
                     <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>
