@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import ModalHelper from "../../components/fouladyar/modal-helper/modalHelper";
+import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import toast from "react-hot-toast";
 import { LiaClipboardCheckSolid } from "react-icons/lia";
-import { FixedHeader } from "../../layout/header/Fixed-Header";
-import { BottomNavBar } from "../../layout/Index-layout";
+import { FixedHeader } from "../../../layout/header/Fixed-Header";
+import { BottomNavBar } from "../../../layout/Index-layout";
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-import postTest from "../../assets/images/fitness-academic/post-test.png"
-import slide1 from "../../images/fouladyar/slide1.jpg"
-import slide2 from "../../images/fouladyar/slide2.jpg"
-import slide3 from "../../images/fouladyar/slide3.jpg"
-import slide4 from "../../images/fouladyar/slide4.jpg"
-import slide5 from "../../images/fouladyar/slide5.jpg"
-import news1 from "../../images/fouladyar/news1.png"
+import postTest from "../../../assets/images/fitness-academic/post-test.png"
+import slide1 from "../../../images/fouladyar/slide1.jpg"
+import slide2 from "../../../images/fouladyar/slide2.jpg"
+import slide3 from "../../../images/fouladyar/slide3.jpg"
+import slide4 from "../../../images/fouladyar/slide4.jpg"
+import slide5 from "../../../images/fouladyar/slide5.jpg"
+import news1 from "../../../images/fouladyar/news1.png"
 import { MdClose } from "react-icons/md";
 import { TbClockHour4 } from "react-icons/tb";
-import { ErrorToaster } from "../../shared/toaster";
-import { toFarsiNumber } from "../../shared/toFarsiNumber";
-import { ConvertGregorianToJalali } from "../../shared/convertGregorianToJalali";
-import StatusInquery from "../fouladyar/StatusInquery/statusInquery";
+import { ErrorToaster } from "../../../shared/toaster";
+import { toFarsiNumber } from "../../../shared/toFarsiNumber";
+import { ConvertGregorianToJalali } from "../../../shared/convertGregorianToJalali";
+import StatusInquery from "../StatusInquery/statusInquery";
 import {IoMenuOutline} from "react-icons/io5";
 import {FaArrowLeft} from "react-icons/fa";
 

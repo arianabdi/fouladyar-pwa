@@ -13,7 +13,7 @@ import Wallet from "../pages/wallet";
 import Programs from "../pages/programs";
 import Packages from "../pages/packages";
 import ProgramDetail from "../pages/program-detail";
-import Home from "../pages/home";
+import Home from "../pages/fouladyar/home";
 import Post from "../pages/post";
 import UserSpecificationForm from "../pages/userSpecificationForm";
 import Payment from "../pages/payment";
