@@ -14,7 +14,7 @@ import {ConvertGregorianToJalali} from "../../../shared/convertGregorianToJalali
 import {RiCalendar2Line} from "react-icons/ri";
 import {LoadingState} from "../../../components/fouladyar/loading-state/loadingState";
 
-function NewsItem({item}) {
+function ProductItem({item}) {
     const TruncatedText = ({text, maxLength = 40}) => {
         const truncatedText = text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
 
@@ -24,59 +24,48 @@ function NewsItem({item}) {
     return (
 
 
-        <div className="news-feed-item-container">
-            <div className="news-title">{item.title}</div>
-            <div className="news-feed-image">
-                <img src={item.image} alt=""/>
-            </div>
-            <div className="news-summary" dangerouslySetInnerHTML={{__html: item.excerpt}}/>
-            <div className="news-action-container d-flex flex-row justify-content-between align-items-center">
-
-
-                <Link className="news-more-btn" to={`${process.env.PUBLIC_URL}/post?postId=`}>
-                    ادامه مطلب
-                </Link>
-                <div className="news-date">
-                    {toFarsiNumber(ConvertGregorianToJalali(item.date, false))}
-                    <RiCalendar2Line size={18} color={"#000"}/>
+        <div className="product-feed-item-container">
+            <Link className="product-image-container" to={`${process.env.PUBLIC_URL}/post?postId=`}>
+                <div className="product-feed-image">
+                    <img src={item.image} alt=""/>
                 </div>
-            </div>
+            </Link>
         </div>
 
     );
 }
 
-const News = () => {
+const Products = () => {
     const auth = useSelector((state) => state.auth);
     const profile = useSelector((state) => state.profile);
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [posts, setPosts] = useState([]);
+    const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [modalComponent, setModalComponent] = useState(<div>empty</div>);
 
-    async function getNewsFeed() {
+    async function getProducts() {
 
 
         try {
             setIsLoading(true)
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/wp-json/wp/v2/posts`, {
+            const res = await axios.get(`${process.env.REACT_APP_API_URL}/wp-json/wc/v3/products`, {
                 params: {
-                    _embed: 'id,date,link,title,content,excerpt,better_featured_image',
-                    categories: 38,
-                }
+                    per_page: 20,
+                },
+                headers: {
+                    Authorization:
+                        `Basic ${process.env.WOOCOMMERCE_ACCESS_TOKEN}`,
+                },
             });
-            console.log('_getNewsFeed', res.data)
+            console.log('_getProducts', res.data)
             if (res.status === 200) {
-                setPosts(res.data.map(item => {
+                setProducts(res.data.map(item => {
                     return ({
                         id: item.id,
-                        title: item.title.rendered,
-                        excerpt: item.excerpt.rendered,
-                        date: item.date,
-                        image: item.better_featured_image.source_url,
+                        image: item?.images[0]?.src,
                     })
                 }))
                 // setNewsFeedItems(res.data.data.news);
@@ -94,12 +83,12 @@ const News = () => {
 
 
     useEffect(() => {
-        getNewsFeed()
+        getProducts()
     }, [])
 
     useEffect(() => {
-        console.log('post', posts)
-    }, [posts])
+        console.log('post', products)
+    }, [products])
 
 
     const settings = {
@@ -122,14 +111,14 @@ const News = () => {
                 onClose={() => setIsModalOpen(false)}
                 component={modalComponent}
             />
-            <FixedHeader title={"اخبار"} useBack={true}/>
-            <div className="nk-content news-feed">
+            <FixedHeader title={"محصولات"} useBack={true}/>
+            <div className="nk-content product-feed">
                 {
                     isLoading ?
                         <div className={'modal-loading-state'}><LoadingState/></div> :
-                        posts.map(item => {
+                        products.map(item => {
                             return (
-                                <NewsItem item={item}/>
+                                <ProductItem item={item}/>
                             )
                         })
                 }
@@ -140,4 +129,4 @@ const News = () => {
     );
 };
 
-export default News;
+export default Products;

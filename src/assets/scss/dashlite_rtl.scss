@@ -62,7 +62,25 @@
   margin-top: 5rem;
   padding: 0px 11px !important;
 }
-
+.product-feed{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 5rem;
+  padding: 0px 11px !important;
+}
+.product-feed-item-container{
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 4px solid #555;
+}
+.product-feed-image{
+display: flex;
+}
+.product-image-container{
+  display: flex;
+}
 
 .news-feed .news-feed-item-container{
   color: #000000;
