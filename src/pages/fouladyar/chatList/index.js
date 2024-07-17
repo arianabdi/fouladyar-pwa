@@ -40,7 +40,7 @@ function ChatItem({item}) {
     }
 
     return (
-        <Link className="chat-item-container" to={`${process.env.PUBLIC_URL}/post?postId=${item._id}`}>
+        <Link className="chat-item-container" to={`${process.env.PUBLIC_URL}/chat`}>
             {item.group === true ? (
                 <div key={`chat-${item.id}`} className="chat-media user-avatar user-avatar-multiple">
                     {item.user.slice(0, 2).map((user, idx) => {

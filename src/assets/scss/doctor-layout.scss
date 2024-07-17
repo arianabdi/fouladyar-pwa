@@ -1302,13 +1302,79 @@ body {
 }
 
 
-.doctor-layout .ticket {
+.chat.is-me .chat-msg{
+  background-color: #166693 !important;
+  color: #fff;
+  margin: 2px 0px;
+  border-radius: 20px 5px 5px 20px;
+  border: unset !important;
+  border-bottom-right-radius: 5px ;
+}
 
+.date-seeder {
+  background: rgba(0, 0, 0, 0.0784313725);
+  margin: 30px 0px;
+}
+.chat.is-you .chat-msg{
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  margin: 2px 0px;
+  border-radius: 5px 20px 20px 5px;
+  border: 1px solid #ebebeb;
+}
+.you-chat-msg-first {
+  opacity: 1;
+  border-top-left-radius: 15px !important;
+}
+.you-chat-msg-last {
+  border-bottom-left-radius: 0px !important;
+}
+.you-chat-msg-middle {
+  border-bottom-left-radius: 5px !important;
+}
+
+.me-chat-msg-first {
+  opacity: 1;
+  border-top-right-radius: 15px !important;
+}
+.me-chat-msg-last {
+  border-bottom-right-radius: 0px !important;
+}
+.me-chat-msg-middle {
+  border-bottom-right-radius: 5px !important;
+}
+
+.chat-content {
+  padding: 2px !important;
+  margin: 0px 15px !important;
+}
+
+.chat-message-rail{
+  overflow: scroll;
+  height: calc(100vh - 8rem);
+  pointer-events: auto;
+  margin-top: 4rem;
+}
+.nk-chat-editor{
+  padding: 0.6rem 1.25rem !important;
+  border-top: 1px solid #cdcdcd;
+}
+.nk-chat-panel{
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  padding: 1.25rem 0px 4.25rem 0px !important;
+  overflow-x: hidden !important;
+}
+.nk-chat-body .simplebar-content{
+  gap: 10px;
+  justify-content: start;
 }
 
 @media (max-width: 768px) {
   .doctor-layout .simplebar-content {
-    height: calc(100vh - 60px) !important;
+    height: calc(100vh) !important;
   }
   .doctor-layout .nk-content-auth {
     max-width: 100% !important;
@@ -1602,6 +1668,10 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px 0px;
+}
+.nk-chat-body{
+  opacity: 1 !important;
+  font-family: 'iransans', sans-serif;
 }
 .department-list-modal{
   font-family: "iransans", serif;

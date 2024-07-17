@@ -24,6 +24,7 @@ import ProductDetail from "../pages/fouladyar/productDetail";
 import Tracking from "../pages/fouladyar/tracking";
 import Login from "../pages/fouladyar/login";
 import ChatList from "../pages/fouladyar/chatList";
+import Chat from "../pages/fouladyar/chat/Chat";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -54,6 +55,7 @@ const Pages = () => {
                     <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>
                     <Route path="/tracking" element={<Tracking/>}></Route>
                     <Route path="/login" element={<Login/>}></Route>
+                    <Route path="/chat" element={<Chat/>}></Route>
 
 
 

@@ -515,10 +515,6 @@ body, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
   letter-spacing: 0;
 }
 
-.chat-msg{
-  font-family: dana, serif;
-}
-
 .link-list-opt {
   direction: rtl;
 }
@@ -528,12 +524,6 @@ body, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
   background: #ADD8E6;
 }
 
-.chat.is-me .chat-msg{
-  background: #0084FF;
-}
-.chat-msg{
-  border-radius: 15px;
-}
 
 
 .is-unread .chat-context .status {
@@ -653,12 +643,14 @@ body, h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1{
 .body::-webkit-scrollbar {
   display: none;
 }
+.nk-chat-panel,
 .product-image-list-wrapper,
 .news-container {
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 
+.nk-chat-panel::-webkit-scrollbar ,
 .product-image-list-wrapper::-webkit-scrollbar ,
 .news-container::-webkit-scrollbar {
   display: none; /* Safari and Chrome */
