@@ -1303,7 +1303,7 @@ body {
 
 
 .chat.is-me .chat-msg{
-  background-color: #166693 !important;
+  background-color: #166693 ;
   color: #fff;
   margin: 2px 0px;
   border-radius: 20px 5px 5px 20px;
@@ -1356,6 +1356,67 @@ body {
   pointer-events: auto;
   margin-top: 4rem;
 }
+
+.message-action-menu ul li{
+  border-bottom: 1px solid #eee;
+  padding: 5px 5px;
+}
+.message-action-menu ul li:hover{
+  background: rgb(240 240 242);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.mechat-selected{
+  background: #3999d5 !important;
+  color: #fff;
+}
+
+.mechat-selected .chat-meta li{
+  color: #fff;
+}
+.reply-close-btn{
+  background: #ffffff;
+  border-radius: 50px;
+  border: 1px solid #21212100;
+  width: 1.6rem;
+  height: 1.6rem;
+  color: #000;
+  padding: 0px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.reply-context{
+  text-align: right;
+}
+.nk-chat-editor-2{
+  height: 50px;
+  position: relative;
+  bottom: 50px;
+  z-index: 1000;
+  background: #ffffff;
+  width: 100%;
+  border-top: 1px solid #e2e2e2;
+  align-items: center;
+  margin-bottom: -50px;
+  padding: 0px 10px;
+  pointer-events: all;
+
+}
+.message-action-menu{
+  position: absolute;
+  //width: 140px;
+  padding: 3px 10px;
+  color: #464a54;
+  line-height: 32px;
+  background: #ffffff;
+  z-index: 10000;
+  box-shadow: 0 1px 2px 0px rgba(44, 55, 130, 0.15);
+  border-radius: 4px !important;
+}
+
 .nk-chat-editor{
   padding: 0.6rem 1.25rem !important;
   border-top: 1px solid #cdcdcd;

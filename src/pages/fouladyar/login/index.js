@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useTranslation} from "react-i18next";
@@ -11,12 +11,14 @@ import slide2 from "../../../images/fouladyar/slide2.jpg"
 import {ErrorToaster} from "../../../shared/toaster";
 import {Field} from "../../../components/fouladyar/field/field";
 import Divider from "../../../shared/divider";
+import {setToken} from "../../../redux/store/services/auth/store";
+import {setProfile} from "../../../redux/store/services/profile/store";
 
 
 const Login = () => {
     const auth = useSelector((state) => state.auth);
     const profile = useSelector((state) => state.profile);
-
+    const dispatch = useDispatch();
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
     const [form, setForm] = useState({
@@ -24,22 +26,36 @@ const Login = () => {
         password: ""
     });
 
-    async function _getHomePosts() {
-
-        console.log('token ', auth)
+    async function onLogin() {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/posts/application/home`, {
-                headers: {authorization: `bearer ${auth.token}`}
+
+            // Perform your login logic to obtain the token
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+                userNumber: form.username,
+                password: form.password,
             });
-            console.log('_getHomePosts', res.data)
-            if (res.status === 200) {
+
+
+            if(res.status === 200 || res.status === 201){
+
+                const userData = res.data.user;
+                dispatch(setToken(res.data.accessToken));
+                dispatch(setProfile({
+                    id: userData.id,
+                    fullName: userData.fullName,
+                    email: userData.email || '',
+                    birthDate: userData.birthDate,
+                    username: userData.username,
+                    gender: userData.gender,
+                    jobTitle: userData.jobTitle,
+                    privileges: userData.privileges,
+                }))
+                navigate('/chat-list')
             }
 
-            return res
-        } catch (error) {
-            ErrorToaster(error)
+        } catch (e) {
+            ErrorToaster(e)
         }
-
     }
 
 
@@ -64,7 +80,7 @@ const Login = () => {
                                         <div className="login-description">با استفاده از چت فولادیار با دپارتمان های
                                             مختلف این سازمان ارتباط برقرار کرده و درخواست های خود را مدیریت کنید.
                                         </div>
-                                        <form className="login-form">
+                                        <div className="login-form">
                                             <Field
                                                 id={"username"}
                                                 name={"username"}
@@ -91,15 +107,15 @@ const Login = () => {
                                                     }));
                                                 }}
                                             />
-                                            <button className="fouladyar-blue-button w-100 mt-4" onClick={() => {
-                                                navigate('/chat-list')
+                                            <button className="fouladyar-blue-button w-100 mt-4" onClick={async () => {
+                                                await onLogin()
                                             }}>
                                                 ورود به سیستم
                                             </button>
-                                        </form>
+                                        </div>
                                         <Divider/>
                                         <div className='forgot-password' onClick={() => {
-                                            navigate('/chat-list')
+                                            // navigate('/chat-list')
                                         }}>
                                             رمز عبور خود را فراموش کرده اید؟
                                         </div>

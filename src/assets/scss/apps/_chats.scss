@@ -405,7 +405,6 @@ $chat-meta-sap: $ni-dot !default;
     &.is-me{
         justify-content: flex-end;
         .chat-msg{
-            background-color: $accent-color;
             color: $white;
         }
         .chat-meta{

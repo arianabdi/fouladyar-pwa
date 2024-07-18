@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useTranslation} from "react-i18next";
@@ -14,6 +14,13 @@ import {UserAvatar} from "../../../components/Component";
 import {MdClose} from "react-icons/md";
 import {IoAddSharp} from "react-icons/io5";
 import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
+import {
+    selectActiveChatId,
+    selectActiveChatMessages,
+    selectChats
+} from "../../../redux/store/services/socket/store/socket-selector";
+import {selectAuthToken} from "../../../redux/store/services/auth/store/auth-selectors";
+import {switchChat} from "../../../redux/store/services/socket/store/socket-actions";
 
 
 export function parseMessageFromStructuralMessage(customString) {
@@ -28,7 +35,7 @@ export function parseMessageFromStructuralMessage(customString) {
     return '';
 }
 
-function ChatItem({item}) {
+function ChatItem({item, onClick}) {
     function MessageSeeder(message) {
         const msg = parseMessageFromStructuralMessage(item.lastMessage);
 
@@ -40,7 +47,9 @@ function ChatItem({item}) {
     }
 
     return (
-        <Link className="chat-item-container" to={`${process.env.PUBLIC_URL}/chat`}>
+        <div className="chat-item-container" onClick={() => {
+            onClick()
+        }}>
             {item.group === true ? (
                 <div key={`chat-${item.id}`} className="chat-media user-avatar user-avatar-multiple">
                     {item.user.slice(0, 2).map((user, idx) => {
@@ -63,7 +72,7 @@ function ChatItem({item}) {
             )}
             <div className="chat-info">
                 <div className="chat-from">
-                    <div className="name">{`${item.fullname ? item.fullname : (item.user2fullname ? item.user2fullname : "نا شناس")}`}</div>
+                    <div className="name">{`${item.groupname ? item.groupname : "نا شناس"}`}</div>
                     <span className="time">{
                         !item.lastMessageAt ? "-" :
                             toFarsiNumber(ConvertDateToCalendarString(item.lastMessageAt.split(".")[0]))
@@ -83,7 +92,7 @@ function ChatItem({item}) {
                     }
                 </div>
             </div>
-        </Link>
+        </div>
     );
 }
 
@@ -120,6 +129,48 @@ const ChatList = () => {
     const [newsFeedItems, setNewsFeedItems] = useState([]);
     const [eventFeedItems, setEventFeedItems] = useState([]);
 
+
+
+    const dispatch = useDispatch();
+
+    // Redux Selector
+    const socket = useSelector((state) => state.socket.socket);
+    const chats = useSelector(selectChats);
+    const activeChatId = useSelector(selectActiveChatId);
+    const activeChatMessages = useSelector(selectActiveChatMessages);
+
+    useEffect(()=>{
+        console.log('chats', chats)
+    },[chats])
+
+
+    useEffect(()=>{
+        console.log('activeChatMessages', activeChatMessages)
+    },[activeChatMessages])
+
+
+    useEffect(()=>{
+        console.log('socketsocket', socket)
+    },[socket])
+
+
+    // useEffect(()=>{
+    //     console.log('activeChatId', activeChatId)
+    //     if(activeChatId){
+    //         if(socket){
+    //             socket.emit('paginateMessages', {
+    //                 conversationId: parseInt(activeChatId.toString()),
+    //                 pageOptionsDto: {
+    //                     page: 1,
+    //                     take: 20,
+    //                 },
+    //             });
+    //
+    //         }
+    //     }
+    // },[activeChatId])
+
+
     const [form, setForm] = useState({
         username: "",
         password: ""
@@ -148,27 +199,17 @@ const ChatList = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalComponent, setModalComponent] = useState(<div>empty</div>);
 
-    async function _getHomePosts() {
 
-        console.log('token ', auth)
-        try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/posts/application/home`, {
-                headers: {authorization: `bearer ${auth.token}`}
-            });
-            console.log('_getHomePosts', res.data)
-            if (res.status === 200) {
-                setNewsFeedItems(res.data.data.news);
-                setEventFeedItems(res.data.data.events);
-            }
 
-            return res
-        } catch (error) {
-            ErrorToaster(error)
+   function onChatSelect({chatId}){
+        if(socket){
+            dispatch(switchChat(chatId.toString()))
+            navigate('/chat-messages')
+        }else{
+            ErrorToaster({message: 'Your session has expired. Please log in again'})
+            navigate('/login')
         }
-
     }
-
-
     return (
 
         <React.Fragment>
@@ -197,10 +238,14 @@ const ChatList = () => {
                                 </div>
                                 <div className="container  m-0 p-0" style={{paddingBottom: "6rem"}}>
                                     {
-                                        chatList.map(item => {
+                                        Object.keys(chats).map(value=> {
+
                                             return(
                                                 <ChatItem
-                                                    item={item}
+                                                    item={chats[value]}
+                                                    onClick={()=>{
+                                                        onChatSelect({chatId: value})
+                                                    }}
                                                 />
                                             )
                                         })

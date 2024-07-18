@@ -3,7 +3,7 @@
 import {
   SET_USER_PENDING,
   SET_TOKEN,
-  SET_PROFILE,
+  // SET_PROFILE,
   SET_USERS_LIST,
   SET_USERS_PAGINATION,
   SET_USER, SET_USER_PARTITIONS,
@@ -40,11 +40,11 @@ export default function userReducer(state = initialState, action = {}) {
         ...state,
         token: action.payload,
       };
-    case SET_PROFILE:
-      return {
-        ...state,
-        profile: action.payload,
-      };
+    // case SET_PROFILE:
+    //   return {
+    //     ...state,
+    //     profile: action.payload,
+    //   };
     case SET_USERS_LIST:
       return {
         ...state,

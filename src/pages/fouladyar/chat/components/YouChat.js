@@ -1,6 +1,6 @@
 import {toFarsiNumber} from "../../../../shared/toFarsiNumber";
 import React from "react";
-import {getHoursAndMinutesFromDate, parseCustomFormat} from "./MeChat";
+import {getHoursAndMinutesFromDate, parseCustomFormat} from "../../chatMessages/components/MeChat";
 
 export const YouChat = ({item, chat, isSelected, onContextMenu, menuWidth, menuHeight, className}) => {
 

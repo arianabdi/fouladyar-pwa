@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 
 export const SET_USER_PENDING = 'USER/SET_PENDING';
 export const SET_TOKEN = 'USER/SET_TOKEN';
-export const SET_PROFILE = 'USER/SET_PROFILE';
+// export const SET_PROFILE = 'USER/SET_PROFILE';
 export const SET_USERS_LIST = 'USER/SET_USERS_LIST';
 export const SET_USERS_PAGINATION = 'USER/SET_USERS_PAGINATION';
 export const SET_USER = 'USER/SET_USER';
@@ -15,7 +15,7 @@ export const setUserPending = createAction(SET_USER_PENDING, (section = 'all', s
   status,
 }));
 export const setToken = createAction(SET_TOKEN);
-export const setProfile = createAction(SET_PROFILE);
+// export const setProfile = createAction(SET_PROFILE);
 export const setUsersList = createAction(SET_USERS_LIST);
 export const setUsersPagination = createAction(SET_USERS_PAGINATION);
 export const setUser = createAction(SET_USER);

@@ -1,20 +1,21 @@
 import React from "react";
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, HashRouter } from "react-router-dom";
-import App from "./App";
+import {BrowserRouter} from "react-router-dom";
+
 
 import "./assets/scss/dashlite.scss";
 import "./assets/scss/dashlite_rtl.scss";
 import "./assets/scss/style-email.scss";
 
 import reportWebVitals from "./reportWebVitals";
+import AppWrapper from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <BrowserRouter >
-    <App />
-  </BrowserRouter >
+    <BrowserRouter>
+        <AppWrapper/>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

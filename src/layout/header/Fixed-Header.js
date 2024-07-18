@@ -3,10 +3,12 @@ import {IoArrowForwardSharp, IoMenuOutline} from "react-icons/io5";
 import {useTheme, useThemeUpdate} from '../provider/Theme';
 import classNames from "classnames";
 import headerLogo from "../../assets/images/fouladyar/headerLogo.png";
+import {useNavigate} from "react-router-dom";
 
 export function FixedHeader({title, useBack, fixed, className}) {
     const theme = useTheme();
     const themeUpdate = useThemeUpdate();
+    const navigate = useNavigate();
     const headerClass = classNames({
         "nk-header": true,
         "nk-header-fixed": fixed,
@@ -28,7 +30,7 @@ export function FixedHeader({title, useBack, fixed, className}) {
                         </div>
                     </div> :
                     <div className="fixed-header-back" onClick={() => {
-                        history.back()
+                        navigate(-1)
                     }}>
                         <IoArrowForwardSharp size={22} color={"#4f5050"}/>
                     </div>
