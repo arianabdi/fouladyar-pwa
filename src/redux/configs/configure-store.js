@@ -1,14 +1,18 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-import { persistStore, persistReducer } from 'redux-persist'
+import {persistStore, persistReducer, createTransform} from 'redux-persist'
 import thunkMiddleware from 'redux-thunk';
 import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
 import { axios, Storage, Linking } from '../tools';
 import settings from '../settings.json';
 import {injectServices} from "../store/utils";
 
+// Define a transform to handle serialization
+
+
 const persistConfig = {
   key: 'root',
   storage,
+  blacklist: ['socket'], // اینجا گفتیم اطلاعات چت رو پرسیست نکن و نگه ندار
 }
 
 function storeConfiguration(reducers, initialState = {}) {

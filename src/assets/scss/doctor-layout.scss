@@ -1354,7 +1354,6 @@ body {
   overflow: scroll;
   height: calc(100vh - 8rem);
   pointer-events: auto;
-  margin-top: 4rem;
 }
 
 .message-action-menu ul li{
@@ -1420,6 +1419,7 @@ body {
 .nk-chat-editor{
   padding: 0.6rem 1.25rem !important;
   border-top: 1px solid #cdcdcd;
+  pointer-events: all !important;
 }
 .nk-chat-panel{
   display: flex;

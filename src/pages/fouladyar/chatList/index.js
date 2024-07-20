@@ -202,6 +202,7 @@ const ChatList = () => {
 
 
    function onChatSelect({chatId}){
+       console.log('selectedChatId', chatId)
         if(socket){
             dispatch(switchChat(chatId.toString()))
             navigate('/chat-messages')

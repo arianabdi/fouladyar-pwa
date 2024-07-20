@@ -251,7 +251,9 @@ display: flex;
   border-right: 8px solid #3d90c3;
   margin-top: 5px;
 }
-
+.chat.is-me {
+  text-align: right;
+}
 .msg-reply-name{
   font-size: 12px;
   color: #1451d1;

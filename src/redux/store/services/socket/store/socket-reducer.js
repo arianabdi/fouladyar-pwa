@@ -16,6 +16,7 @@ import {transformChatsArrayToObject} from '../utils/transformChats';
 const initialState = {
     socket: null,
     activeChatId: null,
+    lastMessage: null,
     chats: {}, // { chatId: { messages: [] } }
 };
 
@@ -42,8 +43,9 @@ const socketReducer = (state = initialState, action) => {
                     [chatId]: {
                         ...state.chats[chatId],
                         messages: [...(state.chats[chatId]?.messages || []), message],
-                    },
+                    }
                 },
+                lastMessage: message
             };
         }
         case SEND_MESSAGE: {

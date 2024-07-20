@@ -24,6 +24,7 @@ import {
 import {selectAuthToken} from "./redux/store/services/auth/store/auth-selectors";
 import {io} from "socket.io-client";
 import {useNavigate} from "react-router-dom";
+import {createTransform} from "redux-persist";
 
 const configs = configureApp();
 export const {store, persistor} = configs;
@@ -67,7 +68,7 @@ const App = () => {
     const activeChatMessages = useSelector(selectActiveChatMessages);
 
     useEffect(() => {
-        if(!token)
+        if (!token)
             navigate('/login')
 
         const socket = io(process.env.REACT_APP_WEBSOCKET_URL, {
@@ -130,10 +131,10 @@ const App = () => {
                 <I18nextProvider i18n={i18next}>
                     <Router/>
                 </I18nextProvider>
-        </IconContext.Provider>
-</ThemeProvider>
-)
-    ;
+            </IconContext.Provider>
+        </ThemeProvider>
+    )
+        ;
 };
 
 
