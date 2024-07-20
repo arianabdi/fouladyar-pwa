@@ -23,3 +23,23 @@ export const selectActiveChatMessages = createSelector(
         }
     }
 );
+export const selectActiveChatGroupName = createSelector(
+    [selectChats, selectActiveChatId],
+    (chats, activeChatId) => {
+        if(activeChatId){
+            return chats[activeChatId]?.groupname || []
+        }else{
+            return []
+        }
+    }
+);
+export const selectScrollPosition  = createSelector(
+    [selectChats, selectActiveChatId],
+    (chats, activeChatId) => {
+        if(activeChatId){
+            return chats[activeChatId]?.scrollPositions || 0
+        }else{
+            return []
+        }
+    }
+);

@@ -10,7 +10,11 @@ import {clearProfile} from "../../../redux/store/services/profile/store/profile-
 import {useNavigate} from "react-router-dom";
 import {FixedHeader} from "../../../layout/header/Fixed-Header";
 import {parseCustomFormat} from "./components/MeChat";
-import {selectActiveChatId, selectActiveChatMessages} from "../../../redux/store/services/socket/store/socket-selector";
+import {
+    selectActiveChatGroupName,
+    selectActiveChatId,
+    selectActiveChatMessages
+} from "../../../redux/store/services/socket/store/socket-selector";
 import ChatBody from "./components/ChatBody";
 
 
@@ -21,6 +25,7 @@ const ChatMessages = () => {
     const profile = useSelector(selectUserProfile)
     const activeChatId = useSelector(selectActiveChatId);
     const activeChatMessages = useSelector(selectActiveChatMessages);
+    const activeChatGroupName = useSelector(selectActiveChatGroupName);
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -151,7 +156,7 @@ ${message}
 
     return (
         <React.Fragment>
-            <FixedHeader title={"چت"} useBack={true}/>
+            <FixedHeader title={activeChatGroupName || 'چت'} useBack={true}/>
             <ChatView/>
         </React.Fragment>
     );

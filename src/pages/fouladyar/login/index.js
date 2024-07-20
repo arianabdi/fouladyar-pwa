@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
@@ -26,6 +26,13 @@ const Login = () => {
         password: ""
     });
 
+
+    useEffect(()=>{
+        if(auth.token)
+            navigate('/chat-list')
+    }, [])
+
+
     async function onLogin() {
         try {
 
@@ -36,7 +43,7 @@ const Login = () => {
             });
 
 
-            if(res.status === 200 || res.status === 201){
+            if (res.status === 200 || res.status === 201) {
 
                 const userData = res.data.user;
                 dispatch(setToken(res.data.accessToken));
@@ -59,10 +66,10 @@ const Login = () => {
     }
 
 
+
     return (
 
         <React.Fragment>
-
             <FixedHeader title={"خانه"}/>
             <div className="nk-content news-page">
                 <div className="container-fluid-doctor">
@@ -107,9 +114,10 @@ const Login = () => {
                                                     }));
                                                 }}
                                             />
-                                            <button className="fouladyar-blue-button w-100 mt-4" onClick={async () => {
-                                                await onLogin()
-                                            }}>
+                                            <button className="fouladyar-blue-button w-100 mt-4"
+                                                    onClick={async () => {
+                                                        await onLogin()
+                                                    }}>
                                                 ورود به سیستم
                                             </button>
                                         </div>

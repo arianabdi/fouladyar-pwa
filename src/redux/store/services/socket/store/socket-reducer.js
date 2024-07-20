@@ -2,14 +2,16 @@
 import {
     CONNECT_SOCKET,
     DISCONNECT_SOCKET,
-    RECEIVE_MESSAGE,
-    SEND_MESSAGE,
-    SWITCH_CHAT,
     RECEIVE_ALL_CHATS,
     RECEIVE_ALL_MESSAGES,
+    RECEIVE_MESSAGE,
     RECEIVE_NEW_CHAT,
+    SEND_MESSAGE,
+    SET_SCROLL_POSITION,
+    CLEAR_SOCKET,
+    SWITCH_CHAT,
 } from './socket-actions';
-import { transformChatsArrayToObject } from '../utils/transformChats';
+import {transformChatsArrayToObject} from '../utils/transformChats';
 
 const initialState = {
     socket: null,
@@ -29,8 +31,10 @@ const socketReducer = (state = initialState, action) => {
                 ...state,
                 socket: null,
             };
+        case CLEAR_SOCKET:
+            return initialState;
         case RECEIVE_MESSAGE: {
-            const { chatId, message } = action.payload;
+            const {chatId, message} = action.payload;
             return {
                 ...state,
                 chats: {
@@ -43,8 +47,8 @@ const socketReducer = (state = initialState, action) => {
             };
         }
         case SEND_MESSAGE: {
-            const { chatId, message } = action.payload;
-            state.socket.emit('message', { chatId, message });
+            const {chatId, message} = action.payload;
+            state.socket.emit('message', {chatId, message});
             return {
                 ...state,
                 chats: {
@@ -90,6 +94,18 @@ const socketReducer = (state = initialState, action) => {
                             ...state.chats[state.activeChatId].messages,
                             newChat
                         ],
+                    },
+                },
+            };
+        }
+        case SET_SCROLL_POSITION: {
+            return {
+                ...state,
+                chats: {
+                    ...state.chats,
+                    [state.activeChatId]: {
+                        ...state.chats[state.activeChatId],
+                        scrollPosition: action.payload
                     },
                 },
             };

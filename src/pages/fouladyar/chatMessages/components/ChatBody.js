@@ -12,6 +12,12 @@ import {EmptyState} from "../../../../components/fouladyar/empty-state/emptyStat
 import {IoMdClose} from "react-icons/io";
 import ModalHelper from "../../../../components/fouladyar/modal-helper/modalHelper";
 import {YouChat} from "../../chat/components/YouChat";
+import {useDispatch, useSelector} from "react-redux";
+import {
+    selectActiveChatMessages,
+    selectScrollPosition
+} from "../../../../redux/store/services/socket/store/socket-selector";
+import {setScrollPosition} from "../../../../redux/store/services/socket/store/socket-actions";
 
 const ChatBody = ({
       id,
@@ -27,26 +33,24 @@ const ChatBody = ({
     // const { deleteConvo, propAction, chatState } = useContext(ChatContext);
     // const [chat, setChat] = chatState;
 
+    const dispatch = useDispatch();
     const [Uchat, setUchat] = useState({});
     const [messageInput, setMessageInput] = useState("");
     const [chatOptions, setChatOptions] = useState(false);
     const [replymsg, setreplymsg] = useState();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalComponent, setModalComponent] = useState(<div>empty</div>);
+    const activeChatMessages = useSelector(selectActiveChatMessages);
 
+    const scrollPosition = useSelector(selectScrollPosition);
+    const messageEndRef = useRef(null);
 
-    const messagesEndRef = useRef(null);
-
-    const scrollToBottom = () => {
-
-        if (messagesEndRef.current) {
-
-            const scrollHeight = messagesEndRef.current.scrollHeight;
-            const height = messagesEndRef.current.clientHeight;
-            const maxScrollTop = scrollHeight - height;
-            messagesEndRef.current.scrollTop = maxScrollTop > 0 ? maxScrollTop : 0;
+    useEffect(() => {
+        // console.log('scrollPosition', scrollPosition);
+        if (messageEndRef.current) {
+            messageEndRef.current.scrollTop = scrollPosition;
         }
-    };
+    }, [scrollPosition]);
 
     useEffect(() => {
         // scrollToBottom();
@@ -55,8 +59,6 @@ const ChatBody = ({
 
     useEffect(() => {
         setreplymsg(parseCustomFormat(replyMsg)[0] || "");
-
-        scrollToBottom();
     }, [replyMsg]);
 
 
@@ -77,6 +79,10 @@ const ChatBody = ({
         setMessageInput(e.target.value);
     };
 
+    const handleScroll = (e) => {
+        console.log('scroll', e, e.target.scrollTop)
+        dispatch(setScrollPosition(e.target.scrollTop));
+    };
 
     const onRemoveMessage = (idx, id) => {
         // let allChat = chat;
@@ -201,7 +207,13 @@ const ChatBody = ({
         setMenuVisible(true);
         setSelectedMessage(item);
     };
+    const lastMessageRef = useRef(null);
 
+    useEffect(() => {
+        if (lastMessageRef.current) {
+            lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [activeChatMessages]);
 
     const menuRef = useRef(null);
 
@@ -376,23 +388,19 @@ ${parseMessageFromStructuralMessage(message)}
                             </ul>
                         </div>
                         <div className=" chat-message-rail">
-                            <div className="nk-chat-panel chat-message-container"
-                                 scrollableNodeProps={{ref: messagesEndRef}}>
+                            <div className="nk-chat-panel chat-message-container"  onScroll={handleScroll} ref={messageEndRef}>
 
                                 {
                                     chat?.length > 0 ?
                                         chat.map((item, index) => {
-                                            //date
-                                            // DateMessageChecker(item.createdAt, index > 0 ? chat[index -1].createdAt: null)
-                                            // setDateSeeder(item.createdAt)
-
-
                                             let output = <div></div>;
                                             if (item.text) {
                                                 if (item.isMine) {
                                                     output = <div>
-                                                        <DateMessageChecker current={item.createdAt}
-                                                                            previous={index > 0 ? chat[index - 1].createdAt : null}/>
+                                                        <DateMessageChecker
+                                                            current={item.createdAt}
+                                                            previous={index > 0 ? chat[index - 1].createdAt : null}
+                                                        />
                                                         <MeChat
                                                             onContextMenu={handleContextMenu}
                                                             menuWidth={menuWidth}
@@ -401,38 +409,26 @@ ${parseMessageFromStructuralMessage(message)}
                                                             key={`${item.id}-${index}`} item={item}
                                                             chat={Uchat}
                                                             className={MeChatMessageStylesheet(index === 0 ? null : chat[index - 1], chat[index], index === chat?.length ? "" : chat[index + 1])}
-                                                        >
-
-                                                        </MeChat>
-                                                    </div>;
-                                                } else if (item.meta) {
-                                                    output = <div>
-                                                        <DateMessageChecker current={item.createdAt}
-                                                                            previous={index > 0 ? chat[index - 1].createdAt : null}/>
-                                                        <MetaChat
-                                                            key={`${item.id}-${index}`}
-                                                            item={item.meta.metaText}
-                                                            className={MeChatMessageStylesheet(index === 0 ? null : chat[index - 1], chat[index], index === chat?.length ? "" : chat[index + 1])}
-                                                        >
-
-                                                        </MetaChat>
+                                                        />
                                                     </div>;
                                                 } else {
                                                     output = <div>
-                                                        <DateMessageChecker current={item.createdAt}
-                                                                            previous={index > 0 ? chat[index - 1].createdAt : null}/>
+                                                        <DateMessageChecker
+                                                            current={item.createdAt}
+                                                            previous={index > 0 ? chat[index - 1].createdAt : null}
+                                                        />
                                                         <YouChat
                                                             onContextMenu={handleContextMenu}
                                                             menuWidth={menuWidth}
                                                             menuHeight={menuHeight}
                                                             isSelected={selectedMessage?.id === item.id && menuVisible}
-                                                            key={`${item.id}-${index}`}
+                                                            key={item.id}
                                                             item={item}
                                                             chat={Uchat}
                                                             className={YouChatMessageStylesheet(index === 0 ? null : chat[index - 1], chat[index], index === chat?.length ? "" : chat[index + 1])}
-                                                        >
+                                                        />
 
-                                                        </YouChat>
+
                                                     </div>;
                                                 }
                                             }

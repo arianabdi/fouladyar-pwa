@@ -5,6 +5,5 @@ export const setToken = (token) => ({
 });
 
 export const clearToken = () => ({
-    type: 'SET_TOKEN',
-    token: null,
+    type: 'CLEAR_TOKEN'
 });

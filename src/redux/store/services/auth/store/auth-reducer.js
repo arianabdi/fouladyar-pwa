@@ -9,7 +9,11 @@ export const AuthReducer = (state = initialState, action) => {
         ...state,
         token: action.token
       };
-    // Other cases for authentication-related actions
+    case 'CLEAR_TOKEN':
+      return {
+        ...state,
+        token: null
+      };
     default:
       return state;
   }

@@ -6,6 +6,7 @@ import {RiPagesLine, RiProfileLine} from "react-icons/ri";
 import {IoVideocamSharp} from "react-icons/io5";
 import {MdInfoOutline, MdNewspaper, MdOutlineStoreMallDirectory} from "react-icons/md";
 import {IoMdHome} from "react-icons/io";
+import {PiSignOut} from "react-icons/pi";
 
 const fontSize = 20;
 const color = "#555555"
@@ -40,6 +41,12 @@ const menu = [
     icon: <IoVideocamSharp size={fontSize} color={color} />,
     text: "ویدیوها",
     link: "/videos",
+  },
+  {
+    icon: <PiSignOut size={fontSize} color={color} />,
+    text: "خروج از حساب",
+    authGuard: true,
+    link: "/login",
   },
 ];
 
