@@ -1,17 +1,16 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {useTranslation} from "react-i18next";
 import {FixedHeader} from "../../../layout/header/Fixed-Header";
 import {BottomNavBar} from "../../../layout/Index-layout";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {ErrorToaster} from "../../../shared/toaster";
+import {ErrorToaster, SuccessToaster} from "../../../shared/toaster";
 import {toFarsiNumber} from "../../../shared/toFarsiNumber";
 import {ConvertDateToCalendarString} from "../../../shared/convertDateToCalendarString";
 import {UserAvatar} from "../../../components/Component";
-import {MdClose} from "react-icons/md";
 import {IoAddSharp} from "react-icons/io5";
 import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
 import {
@@ -19,7 +18,6 @@ import {
     selectActiveChatMessages,
     selectChats
 } from "../../../redux/store/services/socket/store/socket-selector";
-import {selectAuthToken} from "../../../redux/store/services/auth/store/auth-selectors";
 import {switchChat} from "../../../redux/store/services/socket/store/socket-actions";
 
 
@@ -66,7 +64,7 @@ function ChatItem({item, onClick}) {
                     <span className={"status dot dot-lg dot-success"}></span>
                 </div>
             ) : (
-                <UserAvatar theme={item.theme}  image={item.image} className="chat-media">
+                <UserAvatar theme={item.theme} image={item.image} className="chat-media">
                     <span className={`status dot dot-lg dot-${item.active === true ? "success" : "gray"}`}></span>
                 </UserAvatar>
             )}
@@ -96,18 +94,43 @@ function ChatItem({item, onClick}) {
     );
 }
 
-function DepartmentListModal({closeModal}){
-    return(
+function DepartmentListModal({closeModal, onDepartmentClicked}) {
+
+
+    const {t, i18n} = useTranslation();
+    const [departments, setDepartments] = useState([]);
+
+    useEffect(() => {
+        async function loadDepartmentList() {
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/group`);
+
+                if (res.status === 200) {
+                    setDepartments(res.data);
+                }
+            } catch (e) {
+                ErrorToaster.error(e, t);
+            }
+        }
+
+        loadDepartmentList();
+    }, []);
+
+
+    return (
         <div className="department-list-modal">
-            <div className="department-list-title">لطفا یکی از گروه های زیر را جهت ارسال پیام بزنید. شما قادر خواهید بود به اعضای هر گروه پیغام دهید و اعضا در اسرع وقت به شمام پساخت خواهند داد</div>
+            <div className="department-list-title">لطفا یکی از گروه های زیر را جهت ارسال پیام بزنید. شما قادر خواهید بود
+                به اعضای هر گروه پیغام دهید و اعضا در اسرع وقت به شمام پساخت خواهند داد
+            </div>
             <div className='department-list'>
-                <div className="department-item">واحد مدیریت</div>
-                <div className="department-item">واحد واحد فروش</div>
-                <div className="department-item">واحد تخلیه و بارگیری</div>
-                <div className="department-item">واحد مطالبات</div>
-                <div className="department-item">واحد مشتری</div>
-                <div className="department-item">واحد CRM</div>
-                <div className="department-item">تیم پشتیبانی</div>
+
+                {departments.map((item) => {
+                    return (
+                        <div key={item.id} className="department-item" onClick={async () => {
+                            await onDepartmentClicked(item.id)
+                        }}>{item.name}</div>
+                    )
+                })}
             </div>
 
             <button className="fouladyar-blue-button w-100 mt-4" onClick={() => {
@@ -130,7 +153,6 @@ const ChatList = () => {
     const [eventFeedItems, setEventFeedItems] = useState([]);
 
 
-
     const dispatch = useDispatch();
 
     // Redux Selector
@@ -139,19 +161,19 @@ const ChatList = () => {
     const activeChatId = useSelector(selectActiveChatId);
     const activeChatMessages = useSelector(selectActiveChatMessages);
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log('chats', chats)
-    },[chats])
+    }, [chats])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log('activeChatMessages', activeChatMessages)
-    },[activeChatMessages])
+    }, [activeChatMessages])
 
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log('socketsocket', socket)
-    },[socket])
+    }, [socket])
 
 
     // useEffect(()=>{
@@ -200,17 +222,22 @@ const ChatList = () => {
     const [modalComponent, setModalComponent] = useState(<div>empty</div>);
 
 
-
-   function onChatSelect({chatId}){
-       console.log('selectedChatId', chatId)
-        if(socket){
+    function onChatSelect({chatId}) {
+        console.log('selectedChatId', chatId)
+        if (socket) {
             dispatch(switchChat(chatId.toString()))
             navigate('/chat-messages')
-        }else{
+        } else {
             ErrorToaster({message: 'Your session has expired. Please log in again'})
             navigate('/login')
         }
     }
+
+    async function onDepartmentClicked(groupId) {
+        SuccessToaster({message: groupId}, t)
+        setIsModalOpen(false)
+    }
+
     return (
 
         <React.Fragment>
@@ -229,22 +256,27 @@ const ChatList = () => {
                             <div className="nk-block">
                                 <div className="floating-button" onClick={() => {
                                     setModalComponent(
-                                        <DepartmentListModal closeModal={() => {
-                                            setIsModalOpen(false)
-                                        }}/>
+                                        <DepartmentListModal
+                                            onDepartmentClicked={async (groupId) => {
+                                                await onDepartmentClicked(groupId)
+                                            }}
+                                            closeModal={() => {
+                                                setIsModalOpen(false)
+                                            }}
+                                        />
                                     )
                                     setIsModalOpen(true)
                                 }}>
-                                    <IoAddSharp size={22} color={"#fff"} />
+                                    <IoAddSharp size={22} color={"#fff"}/>
                                 </div>
                                 <div className="container  m-0 p-0" style={{paddingBottom: "6rem"}}>
                                     {
-                                        Object.keys(chats).map(value=> {
+                                        Object.keys(chats).map(value => {
 
-                                            return(
+                                            return (
                                                 <ChatItem
                                                     item={chats[value]}
-                                                    onClick={()=>{
+                                                    onClick={() => {
                                                         onChatSelect({chatId: value})
                                                     }}
                                                 />
