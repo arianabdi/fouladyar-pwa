@@ -115,7 +115,6 @@ const Videos = () => {
                         })
                 }
             </div>
-            <BottomNavBar/>
         </React.Fragment>
 
     );
