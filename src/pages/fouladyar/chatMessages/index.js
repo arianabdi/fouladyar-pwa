@@ -33,7 +33,9 @@ const ChatMessages = () => {
     const [messageInput, setMessageInput] = useState();
     const socket = useSelector((state) => state.socket.socket);
 
-    const [replyMsg, setreplyMsg] = useState();
+    const [replyMsg, setReplyMsg] = useState(``);
+    const [replyFormattedMsg, setReplyFormattedMsg] = useState(``);
+
     const token = useSelector(selectAuthToken);
     const profile = useSelector(selectUserProfile)
     // const activeChatMessages = useSelector(selectActiveChatMessages);
@@ -54,7 +56,6 @@ const ChatMessages = () => {
     const [chatOptions, setChatOptions] = useState(false);
     const [selectedId, setSelectedId] = useState(2232);
     const [selectedName, setSelectedName] = useState("");
-    const [replyMessage, setReplyMessage] = useState(``);
     const [menuPosition, setMenuPosition] = useState({x: 0, y: 0});
     const [menuWidth, setMenuWidth] = useState(200);
     const [menuHeight, setMenuHeight] = useState(0);
@@ -83,7 +84,9 @@ const ChatMessages = () => {
 
 
     useEffect(() => {
-        setreplyMsg(parseCustomFormat(replyMsg)[0] || "");
+        console.log('replyMsg', replyMsg)
+        console.log('replyMsg', parseCustomFormat(replyMsg)[0])
+        // setReplyMsg(parseCustomFormat(replyMsg)[0] || "");
     }, [replyMsg]);
 
     useEffect(() => {
@@ -136,22 +139,23 @@ const ChatMessages = () => {
 
         console.log('onSendMessage', activeChatId, message);
 
-        if (replyMessage.length > 0) {
-            const replyMsgContent = parseCustomFormat(replyMessage)[0];
+        if (replyFormattedMsg.length > 0) {
             const messageWithReply = `
 <^>
-{"type":"reply","name":"${replyMsgContent.name}","message":"${replyMsgContent.message}"}
+{"type":"reply","name":"${replyMsg.name}","message":"${replyMsg.message}"}
 <^>
 ${message}
 <^>
 `;
 
             socket.emit("addMessage", {
-                "conversationId": parseInt(id),
+                "conversationId": parseInt(activeChatId),
                 "text": messageWithReply
             });
-            setReplyMessage([])
+            setReplyMsg([])
+            setReplyFormattedMsg('');
             setMessageInput('')
+            setMenuVisible(false);
         } else {
             if (message !== "" || message !== null) {
                 if (socket) {
@@ -161,6 +165,8 @@ ${message}
                         "text": message
                     });
                     setMessageInput('')
+                    setReplyFormattedMsg('');
+                    setMenuVisible(false);
                 }
             }
         }
@@ -288,15 +294,15 @@ ${parseMessageFromStructuralMessage(message)}
 
     }
 
-    // function replyMessage() {
-//         onReplyMessage(
-//             `
-// <^>
-// {"type":"reply","name":"${selectedMessage.user.fullName}","message":"${parseMessageFromStructuralMessage(selectedMessage.text).replace(/\n/g, "")}"}
-// <^>`
-//         );
-    //     setMenuVisible(false);
-    // }
+    function replyMessage() {
+        const msgStr =             `
+<^>
+{"type":"reply","name":"${selectedMessage.user.fullName}","message":"${parseMessageFromStructuralMessage(selectedMessage.text).replace(/\n/g, "")}"}
+<^>`;
+        setReplyMsg(parseCustomFormat(msgStr)[0])
+        setReplyFormattedMsg(msgStr);
+        setMenuVisible(false);
+    }
 
     // Inside your component
     const textareaRef = useRef(null);
@@ -340,7 +346,7 @@ ${parseMessageFromStructuralMessage(message)}
 
 
     function replyClose() {
-        // onReplyMessageClose();
+        onReplyMessageClose();
     }
 
     function MessageActionMenu() {
@@ -372,7 +378,7 @@ ${parseMessageFromStructuralMessage(message)}
 
     function ReplayMessageBox() {
 
-        if (replyMsg) {
+        if (replyFormattedMsg) {
             return (
                 <div className="nk-chat-editor-2 d-flex flex-row justify-content-between">
                     <button className={`reply-close-btn`} onClick={async () => {
@@ -410,6 +416,8 @@ ${parseMessageFromStructuralMessage(message)}
 
     return (
         <React.Fragment>
+
+            <MessageActionMenu />
             <FixedHeader title={activeChatGroupName || 'چت'} useBack={true} onTitleClick={() =>{
                 navigate('/chat-detail/sssss')
             }}/>
