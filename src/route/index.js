@@ -16,6 +16,7 @@ import "../assets/scss/doctor-layout.scss";
 import ChatDetail from "../pages/fouladyar/chatDetail";
 import Posts from "../pages/fouladyar/posts";
 import SinglePost from "../pages/fouladyar/singlePost";
+import Videos from "../pages/fouladyar/videos";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -43,6 +44,7 @@ const Pages = () => {
                     <Route path="/chat-detail/:chatId" element={<ChatDetail/>}></Route>
                     <Route path="/news" element={<News/>}></Route>
                     <Route path="/posts" element={<Posts/>}></Route>
+                    <Route path="/videos" element={<Videos/>}></Route>
                     <Route path="/single-post/:postId" element={<SinglePost/>}></Route>
                     <Route path="/products" element={<Products/>}></Route>
                     <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>
