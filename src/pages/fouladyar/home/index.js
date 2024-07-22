@@ -196,7 +196,7 @@ const Home = () => {
                                     <ProductItem
                                         item={item}
                                         onClick={() => {
-                                          navigate(`/product-detail/${item.id}`, {state: item.item})
+                                          navigate(`/product-detail/${item.id}`, {state: item})
                                         }}
                                     />
                                 )

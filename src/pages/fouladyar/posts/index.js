@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
 import axios from "axios";
 import {useTranslation} from "react-i18next";
@@ -9,43 +9,11 @@ import {BottomNavBar} from "../../../layout/Index-layout";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {ErrorToaster} from "../../../shared/toaster";
-import {toFarsiNumber} from "../../../shared/toFarsiNumber";
-import {ConvertGregorianToJalali} from "../../../shared/convertGregorianToJalali";
-import {RiCalendar2Line} from "react-icons/ri";
 import {LoadingState} from "../../../components/fouladyar/loading-state/loadingState";
-
-export function NewsItem({item}) {
-
-    const navigate = useNavigate();
-
-    return (
+import {NewsItem} from "../news";
 
 
-        <div className="news-feed-item-container">
-            <div className="news-title">{item.title}</div>
-            <div className="news-feed-image">
-                <img src={item.image} alt=""/>
-            </div>
-            <div className="news-summary" dangerouslySetInnerHTML={{__html: item.excerpt}}/>
-            <div className="news-action-container d-flex flex-row justify-content-between align-items-center">
-
-
-                <div className="news-more-btn" onClick={()=>{
-                    navigate(`/single-post/${item.id}`, {state: item})
-                }}>
-                    ادامه مطلب
-                </div>
-                <div className="news-date">
-                    {toFarsiNumber(ConvertGregorianToJalali(item.date, false))}
-                    <RiCalendar2Line size={18} color={"#000"}/>
-                </div>
-            </div>
-        </div>
-
-    );
-}
-
-const News = () => {
+const Posts = () => {
     const auth = useSelector((state) => state.auth);
     const profile = useSelector((state) => state.profile);
     const {t, i18n} = useTranslation();
@@ -64,7 +32,7 @@ const News = () => {
             const res = await axios.get(`${process.env.REACT_APP_FOULADYAR_GROUP_WP_WEBSITE_URL}/wp-json/wp/v2/posts`, {
                 params: {
                     _embed: 'id,date,link,title,content,excerpt,better_featured_image',
-                    categories: 38,
+                    categories: 42,
                 }
             });
             console.log('_getNewsFeed', res.data)
@@ -122,7 +90,7 @@ const News = () => {
                 onClose={() => setIsModalOpen(false)}
                 component={modalComponent}
             />
-            <FixedHeader title={"اخبار"} useBack={true}/>
+            <FixedHeader title={"مقالات"} useBack={true}/>
             <div className="nk-content news-feed">
                 {
                     isLoading ?
@@ -140,4 +108,4 @@ const News = () => {
     );
 };
 
-export default News;
+export default Posts;

@@ -14,6 +14,8 @@ import ChatList from "../pages/fouladyar/chatList";
 import ChatMessages from "../pages/fouladyar/chatMessages";
 import "../assets/scss/doctor-layout.scss";
 import ChatDetail from "../pages/fouladyar/chatDetail";
+import Posts from "../pages/fouladyar/posts";
+import SinglePost from "../pages/fouladyar/singlePost";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -40,6 +42,8 @@ const Pages = () => {
                     <Route path="/chat-list" element={<ChatList/>}></Route>
                     <Route path="/chat-detail/:chatId" element={<ChatDetail/>}></Route>
                     <Route path="/news" element={<News/>}></Route>
+                    <Route path="/posts" element={<Posts/>}></Route>
+                    <Route path="/single-post/:postId" element={<SinglePost/>}></Route>
                     <Route path="/products" element={<Products/>}></Route>
                     <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>
                     <Route path="/tracking" element={<Tracking/>}></Route>
