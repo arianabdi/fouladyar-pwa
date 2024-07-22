@@ -5,7 +5,7 @@ import classNames from "classnames";
 import headerLogo from "../../assets/images/fouladyar/headerLogo.png";
 import {useNavigate} from "react-router-dom";
 
-export function FixedHeader({title, useBack, fixed, className}) {
+export function FixedHeader({title, useBack, fixed, className, onTitleClick}) {
     const theme = useTheme();
     const themeUpdate = useThemeUpdate();
     const navigate = useNavigate();
@@ -35,7 +35,9 @@ export function FixedHeader({title, useBack, fixed, className}) {
                         <IoArrowForwardSharp size={22} color={"#4f5050"}/>
                     </div>
             }
-            <div className="fixed-header-title">
+            <div className="fixed-header-title" onClick={() => {
+                onTitleClick()
+            }}>
                 {title}
             </div>
 

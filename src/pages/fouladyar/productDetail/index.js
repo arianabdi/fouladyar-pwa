@@ -1,19 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {Link, useLocation, useNavigate, useParams} from "react-router-dom";
-import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
-import axios from "axios";
+import {useLocation, useParams} from "react-router-dom";
 import {useTranslation} from "react-i18next";
 import {FixedHeader} from "../../../layout/header/Fixed-Header";
-import {BottomNavBar} from "../../../layout/Index-layout";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import {ErrorToaster} from "../../../shared/toaster";
 import {toFarsiNumber} from "../../../shared/toFarsiNumber";
 import {ConvertGregorianToJalali} from "../../../shared/convertGregorianToJalali";
 import {RiCalendar2Line} from "react-icons/ri";
-import {LoadingState} from "../../../components/fouladyar/loading-state/loadingState";
-
 
 
 const ProductDetail = () => {
@@ -22,18 +16,16 @@ const ProductDetail = () => {
     const {t, i18n} = useTranslation();
 
     const location = useLocation();
-    const { state } = location;
-    const { productId } = useParams();
+    const {state} = location;
+    const {productId} = useParams();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedImage, setSelectedImage] = useState("");
 
 
-
-
     useEffect(() => {
-       console.log('product-item', 'id', productId, state)
+        console.log('product-item', 'id', productId, state)
         setSelectedImage(state.images[0].src)
     }, [])
 
@@ -71,7 +63,7 @@ const ProductDetail = () => {
                     <div className="product-image-list">
                         {
                             state.images.map(img => {
-                                return(
+                                return (
                                     <div className="image-list-item" onClick={() => {
                                         setSelectedImage(img.src)
                                     }}>

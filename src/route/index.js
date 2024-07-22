@@ -13,6 +13,7 @@ import Login from "../pages/fouladyar/login";
 import ChatList from "../pages/fouladyar/chatList";
 import ChatMessages from "../pages/fouladyar/chatMessages";
 import "../assets/scss/doctor-layout.scss";
+import ChatDetail from "../pages/fouladyar/chatDetail";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -37,6 +38,7 @@ const Pages = () => {
                     {/*Fouladyar*/}
                     <Route path="/home" element={<Home/>}></Route>
                     <Route path="/chat-list" element={<ChatList/>}></Route>
+                    <Route path="/chat-detail/:chatId" element={<ChatDetail/>}></Route>
                     <Route path="/news" element={<News/>}></Route>
                     <Route path="/products" element={<Products/>}></Route>
                     <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>

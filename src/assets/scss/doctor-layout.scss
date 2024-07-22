@@ -2325,8 +2325,12 @@ body {
   overflow-x: scroll;
 }
 
+
 .news-container-scroll-box {
   width: max-content;
+  display: flex;
+  gap: 22px;
+  flex-direction: row;
 }
 
 .slider .slick-arrow {

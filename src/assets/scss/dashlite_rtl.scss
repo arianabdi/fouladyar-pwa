@@ -81,6 +81,9 @@
   overflow: hidden;
   border: 4px solid #555;
 }
+.news-container-scroll-box .product-feed-item-container {
+  width: 13rem;
+}
 .product-feed-image{
 display: flex;
 }
@@ -268,7 +271,26 @@ display: flex;
   padding-bottom: 6px;
 }
 
+.user-info{
 
+}
+.user-name{
+
+}
+
+.user-info-key-value{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.user-info-key-value .user-info-key{
+
+}
+
+.user-info-key-value .user-info-value{
+
+}
 //================================================old code=========================================
 
 .diet-cancel-btn{

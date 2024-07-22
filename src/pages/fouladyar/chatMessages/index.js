@@ -410,7 +410,9 @@ ${parseMessageFromStructuralMessage(message)}
 
     return (
         <React.Fragment>
-            <FixedHeader title={activeChatGroupName || 'چت'} useBack={true}/>
+            <FixedHeader title={activeChatGroupName || 'چت'} useBack={true} onTitleClick={() =>{
+                navigate('/chat-detail/sssss')
+            }}/>
 
             {
                 selectedId !== null ? (

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
 import axios from "axios";
@@ -27,6 +27,9 @@ import { ConvertGregorianToJalali } from "../../../shared/convertGregorianToJala
 import StatusInquery from "../StatusInquery/statusInquery";
 import {IoMenuOutline} from "react-icons/io5";
 import {FaArrowLeft} from "react-icons/fa";
+import {LoadingState} from "../../../components/fouladyar/loading-state/loadingState";
+import {ProductItem} from "../products";
+import {setLoadedProducts} from "../../../redux/store/services/products/store";
 
 function NewsItem({item}) {
   const TruncatedText = ({ text, maxLength = 40 }) => {
@@ -57,6 +60,7 @@ const Home = () => {
   const [newsFeedItems, setNewsFeedItems] = useState([]);
   const [eventFeedItems, setEventFeedItems] = useState([]);
 
+  const loadedProducts = useSelector((state) => state.products);
   const [number, setNumber] = useState({
     part1: "",
     part2: "",
@@ -68,30 +72,54 @@ const Home = () => {
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalComponent, setModalComponent] = useState(<div>empty</div>);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function _getHomePosts() {
+  const dispatch = useDispatch();
 
-    console.log('token ', auth)
+  async function getProducts() {
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/posts/application/home`, {
-        headers: {authorization: `bearer ${auth.token}`}
+      setIsLoading(true)
+      const res = await axios.get(`${process.env.REACT_APP_FOULADYAR_GROUP_WP_WEBSITE_URL}/wp-json/wc/v3/products`, {
+        params: {
+          per_page: 20,
+        },
+        headers: {
+          Authorization:
+              `Basic ${process.env.WOOCOMMERCE_ACCESS_TOKEN}`,
+        },
       });
-      console.log('_getHomePosts', res.data)
+      console.log('_getProducts', res.data)
       if (res.status === 200) {
-        setNewsFeedItems(res.data.data.news);
-        setEventFeedItems(res.data.data.events);
+        const AllLoadedProducts = res.data.map(item => {
+          return ({
+            id: item.id,
+            image: item?.images[0]?.src,
+            item: {
+              images: item.images,
+              name: item.name,
+              description: item.description,
+              date: item.date_created,
+              permalink: item.permalink,
+            }
+          })
+        });
+        dispatch(setLoadedProducts(AllLoadedProducts))
       }
 
+      setIsLoading(false)
       return res
     } catch (error) {
       ErrorToaster(error)
+      setIsLoading(false)
     }
 
   }
 
 
+
   useEffect(() => {
-    _getHomePosts()
+    getProducts()
   }, [])
 
 
@@ -153,44 +181,27 @@ const Home = () => {
                   <div className="news">
                     <div className="d-flex flex-row justify-content-between mb-2 p-4 pb-2">
                       <div className="news-heading">آخرین محصولات</div>
-                      <Link to={"/last-news"}>
+                      <Link to={"/products"}>
                         مشاهده همه
                         <FaArrowLeft  size={13} color={"#206693"}/>
                       </Link>
                     </div>
                     <div className="news-container p-4 pt-0">
                       <div className="news-container-scroll-box">
-                        {/*{*/}
-                        {/*  newsFeedItems?.map(item => {*/}
-                        {/*    return(*/}
-                        {/*      <NewsItem item={item} />*/}
-                        {/*    )*/}
-                        {/*  })*/}
-                        {/*}*/}
-                        <NewsItem item={{
-                          _id: '',
-                          image: news1,
-                          title: 'adadf',
-                          createdAt: 'asdfasdf'
-                        }} />
-                        <NewsItem item={{
-                          _id: '',
-                          image: news1,
-                          title: 'adadf',
-                          createdAt: 'asdfasdf'
-                        }} />
-                        <NewsItem item={{
-                          _id: '',
-                          image: news1,
-                          title: 'adadf',
-                          createdAt: 'asdfasdf'
-                        }} />
-                        <NewsItem item={{
-                          _id: '',
-                          image: news1,
-                          title: 'adadf',
-                          createdAt: 'asdfasdf'
-                        }} />
+                        {
+                          isLoading && loadedProducts.items.length ===0  ?
+                              <div className={'modal-loading-state'}><LoadingState/></div> :
+                              loadedProducts.items.slice(0, 5).map(item => {
+                                return (
+                                    <ProductItem
+                                        item={item}
+                                        onClick={() => {
+                                          navigate(`/product-detail/${item.id}`, {state: item.item})
+                                        }}
+                                    />
+                                )
+                              })
+                        }
                       </div>
 
                     </div>
