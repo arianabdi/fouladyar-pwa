@@ -37,6 +37,25 @@ const ChatDetail = () => {
         {id: 1, src: 'https://i.ibb.co/LP2Zzm5/filkosh-receipe.jpg'},
         {id: 2, src: 'https://i.ibb.co/yQytxST/filkosh-receipe-2.jpg'},
         {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 2, src: 'https://i.ibb.co/yQytxST/filkosh-receipe-2.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 2, src: 'https://i.ibb.co/yQytxST/filkosh-receipe-2.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 1, src: 'https://i.ibb.co/LP2Zzm5/filkosh-receipe.jpg'},
+        {id: 2, src: 'https://i.ibb.co/yQytxST/filkosh-receipe-2.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 2, src: 'https://i.ibb.co/yQytxST/filkosh-receipe-2.jpg'},
+        {id: 1, src: 'https://i.ibb.co/LP2Zzm5/filkosh-receipe.jpg'},
+        {id: 2, src: 'https://i.ibb.co/yQytxST/filkosh-receipe-2.jpg'},
+        {id: 1, src: 'https://i.ibb.co/LP2Zzm5/filkosh-receipe.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 1, src: 'https://i.ibb.co/LP2Zzm5/filkosh-receipe.jpg'},
+        {id: 2, src: 'https://i.ibb.co/yQytxST/filkosh-receipe-2.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
+        {id: 3, src: 'https://i.ibb.co/8sp7wXq/photo-2023-08-13-18-19-37.jpg'},
         // Add more images as needed
     ];
 
@@ -59,9 +78,9 @@ const ChatDetail = () => {
 
         <React.Fragment>
             <FixedHeader title={"اطلاعات چت"} useBack={true}/>
-            <div className="nk-content product-detail">
+            <div className="nk-content chat-detail">
                 <div className="user-info">
-                    <UserAvatar image={AvatarA}></UserAvatar>
+                    <UserAvatar/>
                     <div className="user-name">واحد فروش</div>
                     <div className="last-seen">آخرین بازدید: دیروز</div>
                 </div>
@@ -80,11 +99,11 @@ const ChatDetail = () => {
                 </div>
                 <div className="product-image-list-wrapper">
 
-                    <div className="product-image-list">
+                    <div className="chat-image-list">
                         {
                             images.map(img => {
                                 return(
-                                    <div className="image-list-item" onClick={() => {
+                                    <div className="chat-image-list-item" onClick={() => {
                                         setSelectedImage(img.src)
                                     }}>
                                         <img src={img.src} alt=""/>
