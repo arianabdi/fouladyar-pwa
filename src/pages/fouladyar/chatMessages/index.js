@@ -345,8 +345,10 @@ ${parseMessageFromStructuralMessage(message)}
     }
 
 
+
+
     function replyClose() {
-        onReplyMessageClose();
+        setReplyFormattedMsg(``)
     }
 
     function MessageActionMenu() {
