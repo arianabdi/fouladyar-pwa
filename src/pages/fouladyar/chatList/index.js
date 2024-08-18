@@ -240,8 +240,35 @@ const ChatList = () => {
 
     async function onDepartmentClicked(groupId) {
         SuccessToaster({message: groupId}, t)
+        await createNewChat(groupId);
         setIsModalOpen(false)
     }
+
+
+    async function createNewChat(groupId) {
+        try {
+            console.log('createNewChat', groupId, profile.id)
+            const res = await axios.post(
+                `${process.env.REACT_APP_API_URL}/conversation`,
+                {
+                    groupId: groupId,
+                    userId: profile.id,
+                },
+                {headers: {authorization: `bearer ${auth.token}`}},
+            );
+
+            if (res.status === 200 || res.status === 201) {
+
+                console.log('createNewChat', res.data)
+                dispatch(switchChat(res.data.id.toString()))
+                navigate('/chat-messages')
+            }
+        } catch (e) {
+            ErrorToaster(e)
+        }
+    }
+
+
 
     return (
 
@@ -264,6 +291,8 @@ const ChatList = () => {
                                         <DepartmentListModal
                                             onDepartmentClicked={async (groupId) => {
                                                 await onDepartmentClicked(groupId)
+
+                                                // onChatSelect({ chatId: key })
                                             }}
                                             closeModal={() => {
                                                 setIsModalOpen(false)
