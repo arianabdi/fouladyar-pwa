@@ -10,25 +10,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import {ErrorToaster} from "../../../shared/toaster";
 import StatusInquery from "../StatusInquery/statusInquery";
+import {TrackingItem} from "./trackingItem";
 
-function TrackingItem({item}) {
-    const TruncatedText = ({text, maxLength = 40}) => {
-        const truncatedText = text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
-
-        return <span>{truncatedText}</span>;
-    };
-
-    return (
-
-        <Link to={`${process.env.PUBLIC_URL}/post?postId=${item._id}`}>
-            <div className="news-item-container">
-                <div className="news-item-image">
-                    <img src={item.image} alt=""/>
-                </div>
-            </div>
-        </Link>
-    );
-}
 
 const Tracking = () => {
     const auth = useSelector((state) => state.auth);
@@ -36,9 +19,10 @@ const Tracking = () => {
 
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
-    const [sliderFeedItems, setSliderFeedItems] = useState([]);
-    const [newsFeedItems, setNewsFeedItems] = useState([]);
-    const [eventFeedItems, setEventFeedItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [trackingItems, setTrackingItems] = useState([
+
+    ]);
 
     const [number, setNumber] = useState({
         part1: "",
@@ -49,33 +33,29 @@ const Tracking = () => {
         part6: "",
         part7: ""
     });
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalComponent, setModalComponent] = useState(<div>empty</div>);
 
-    async function trackCode() {
-
-        console.log('token ', auth)
+    async function onPress(e) {
         try {
-            const res = await axios.get(`${process.env.REACT_APP_API_URL}/posts/application/home`, {
-                headers: {authorization: `bearer ${auth.token}`}
+            const code  = Object.values(e).filter(value => value !== "").join('%2F');
+            console.log('code ', code)
+            const res = await axios.get(`${process.env.REACT_APP_TRACKING_URL}/orders/${code}`, {
+
             });
             console.log('_getHomePosts', res.data)
             if (res.status === 200) {
-                setNewsFeedItems(res.data.data.news);
-                setEventFeedItems(res.data.data.events);
+                setTrackingItems(res.data)
             }
 
+            setIsLoading(false)
             return res
         } catch (error) {
             ErrorToaster(error)
+            setIsLoading(false)
         }
 
     }
 
 
-    useEffect(() => {
-
-    }, [])
 
 
     const settings = {
@@ -87,6 +67,7 @@ const Tracking = () => {
     };
 
 
+
     return (
 
         <React.Fragment>
@@ -95,11 +76,23 @@ const Tracking = () => {
                 <div className="container-fluid-doctor">
                     <div className="nk-content-inner">
                         <div className="nk-content-body">
-                            <div className="nk-block">
-                                <div className="container  m-0 ps-0 pe-0" style={{paddingBottom: "6rem"}}>
+                            <div className="nk-block d-flex flex-column">
+                                <div className="container  m-0 ps-0 pe-0" style={{paddingBottom: "3rem"}}>
                                     <StatusInquery
                                         number={number}
+                                        onPress={async (e) => {
+                                            await onPress(e)
+                                        }}
                                     />
+                                </div>
+                                <div className="container  m-0 ps-0 pe-0" style={{paddingBottom: "6rem"}}>
+                                    {
+                                        trackingItems.map((item, index) => {
+                                            return(
+                                                <TrackingItem item={item} index={index}/>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
                         </div>

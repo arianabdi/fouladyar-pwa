@@ -176,6 +176,9 @@ const Home = () => {
 
                   <StatusInquery
                     number={number}
+                    onPress={async (e) => {
+                      navigate(`/tracking`)
+                    }}
                   />
 
                   <div className="news">

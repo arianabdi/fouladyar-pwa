@@ -1386,6 +1386,34 @@ body {
   align-items: center;
 
 }
+.tracking-item {
+  padding: 0px 10px;
+}
+.attach-btn {
+  padding: 5px;
+}
+.tracking-item .name{
+  text-align: right;
+  font-family: 'iransans';
+  font-weight: 500;
+  font-size: 15px;
+}
+.tracking-item .value{
+  text-align: left;
+  font-family: 'iransans';
+  font-weight: 500;
+  font-size: 15px;
+}
+.tracking-item-container{
+  background-color: #fff;
+  margin: 5px;
+  padding: 23px 5px;
+  border-radius: 12px;
+  border: 1px solid #c1c1c1;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+}
 
 .reply-context{
   text-align: right;
