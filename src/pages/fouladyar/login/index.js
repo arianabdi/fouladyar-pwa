@@ -123,7 +123,7 @@ const Login = () => {
                                         </div>
                                         <Divider/>
                                         <div className='forgot-password' onClick={() => {
-                                            // navigate('/chat-list')
+                                            navigate('/forgot-password')
                                         }}>
                                             رمز عبور خود را فراموش کرده اید؟
                                         </div>

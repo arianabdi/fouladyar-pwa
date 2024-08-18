@@ -90,6 +90,12 @@
   padding: 0px 20px !important;
   flex-direction: column
 }
+.forgot-password-container{
+  gap: 10px;
+  margin-top: 4rem;
+  padding: 0px 0px !important;
+  flex-direction: column
+}
 .chat-detail{
   gap: 10px;
   margin-top: 5rem;
@@ -225,11 +231,23 @@ display: flex;
   gap: 22px;
   margin-bottom: 150px;
 }
+.forgot-password-context{
+  font-family: "iransans", serif;
+  display: flex;
+  padding: 50px 10px;
+  flex-direction: column;
+  gap: 22px;
+  margin-bottom: 150px;
+}
 .login-title{
   font-size: 25px;
 }
 .login-description{
   font-size: 17px;
+}
+.forgot-password-description{
+  font-size: 16px;
+  font-weight: 400;
 }
 .video-play-button{
   width: 50px;
