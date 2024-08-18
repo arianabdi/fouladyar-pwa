@@ -90,7 +90,7 @@ const App = () => {
             console.log('receiveMessage', message)
             dispatch(receiveMessage(message.conversationId, {
                 ...message,
-                isMine: message.userId === profile.userId
+                // isMine: message.isMine
             }));
         });
 
