@@ -89,7 +89,7 @@ function ChatItem({item, onClick}) {
                     {
                         parseInt(item.unreadmessages) > 1 ?
                             <div className="status delivered unreadcount">
-                                {item.unreadmessages}
+                                {toFarsiNumber(parseInt(item.unreadmessages) - 1)}
                             </div> :
                             ''
                     }
