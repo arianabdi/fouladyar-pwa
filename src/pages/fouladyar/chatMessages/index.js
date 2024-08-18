@@ -421,7 +421,7 @@ ${parseMessageFromStructuralMessage(message)}
 
             <MessageActionMenu />
             <FixedHeader title={activeChatGroupName || 'چت'} useBack={true} onTitleClick={() =>{
-                navigate('/chat-detail/sssss')
+                // navigate('/chat-detail/sssss')
             }}/>
 
             {
