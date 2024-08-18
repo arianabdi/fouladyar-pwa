@@ -1,11 +1,11 @@
-
 {
   "apps" : [
     {
       "name"      : "fouladyar-pwa",
       "script"    : "npx",
       "interpreter": "none",
-      "args": "serve -s dist -p 80"
+      "args": "sudo serve --ssl-cert /etc/letsencrypt/live/mobile.fouladyarapp.com/cert.pem --ssl-key /etc/letsencrypt/live/mobile.fouladyarapp.com/privkey.pem -s dist -l 443 --no-clipboard"
+
     }
   ]
 }

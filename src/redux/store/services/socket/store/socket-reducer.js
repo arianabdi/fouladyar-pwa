@@ -90,12 +90,9 @@ const socketReducer = (state = initialState, action) => {
                 ...state,
                 chats: {
                     ...state.chats,
-                    [state.activeChatId]: {
-                        ...state.chats[state.activeChatId],
-                        messages: [
-                            ...state.chats[state.activeChatId].messages,
-                            newChat
-                        ],
+                    [newChat.id]: {
+                        ...newChat,
+                        messages: state.chats[newChat.id].messages,
                     },
                 },
             };

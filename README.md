@@ -24,13 +24,13 @@ sudo apt install certbot
 ```
 
 ```agsl
-sudo certbot certonly --standalone -d pro.cliconsult.fr
+sudo certbot certonly --standalone -d mobile.fouladyarapp.com
 ```
 
 
 سپس در صورتی که کلید های زیر ساخته شده باشند کار ایجاد ssl تمام شده است
-/etc/letsencrypt/live/cliconsult.fr/cert.pem
-/etc/letsencrypt/live/cliconsult.fr/privkey.pem
+/etc/letsencrypt/live/mobile.fouladyarapp.com/cert.pem
+/etc/letsencrypt/live/mobile.fouladyarapp.com/privkey.pem
 
 حالا تنها کاری که باید انجام بدیم یک فایل کافنیگ pm2 مشابه زیر ایجاد کنیم و فقط دستوری pm2 start app.config.json را اجرا کنیم. 
 ```agsl
@@ -38,10 +38,10 @@ sudo certbot certonly --standalone -d pro.cliconsult.fr
 {
   "apps" : [
     {
-      "name"      : "cliconsult-pro-ssl",
+      "name"      : "fouladyar-pwa",
       "script"    : "npx",
       "interpreter": "none",
-      "args": "sudo serve --ssl-cert /etc/letsencrypt/live/cliconsult.fr/cert.pem --ssl-key /etc/letsencrypt/live/cliconsult.fr/privkey.pem -s dist -l 443 --no-clipboard"
+      "args": "sudo serve --ssl-cert /etc/letsencrypt/live/mobile.fouladyarapp.com/cert.pem --ssl-key /etc/letsencrypt/live/mobile.fouladyarapp.com/privkey.pem -s dist -l 443 --no-clipboard"
 
     }
   ]
