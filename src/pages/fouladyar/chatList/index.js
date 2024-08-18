@@ -271,17 +271,19 @@ const ChatList = () => {
                                 </div>
                                 <div className="container  m-0 p-0" style={{paddingBottom: "6rem"}}>
                                     {
-                                        Object.keys(chats).map(value => {
-
-                                            return (
-                                                <ChatItem
-                                                    item={chats[value]}
-                                                    onClick={() => {
-                                                        onChatSelect({chatId: value})
-                                                    }}
-                                                />
-                                            )
-                                        })
+                                        Object.entries(chats)
+                                            .sort(([, a], [, b]) => new Date(b.lastMessageAt) - new Date(a.lastMessageAt))
+                                            .map(([key, value]) => {
+                                                return (
+                                                    <ChatItem
+                                                        key={key} // Add a unique key prop
+                                                        item={value}
+                                                        onClick={() => {
+                                                            onChatSelect({ chatId: key })
+                                                        }}
+                                                    />
+                                                )
+                                            })
                                     }
                                 </div>
                             </div>
