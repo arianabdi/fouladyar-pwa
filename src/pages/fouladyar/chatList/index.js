@@ -34,6 +34,11 @@ export function parseMessageFromStructuralMessage(customString) {
 }
 
 function ChatItem({item, onClick}) {
+
+    useEffect(() => {
+        console.log('unreadMessage', item, parseInt(item.unreadmessages))
+    }, [])
+
     function MessageSeeder(message) {
         const msg = parseMessageFromStructuralMessage(item.lastMessage);
 
@@ -70,21 +75,21 @@ function ChatItem({item, onClick}) {
             )}
             <div className="chat-info">
                 <div className="chat-from">
-                    <div className="name">{`${item.groupname ? item.groupname : "نا شناس"}`}</div>
+                    <div className={`name ${parseInt(item.unreadmessages) > 1 ? 'unreadmessage' : ''}`}>{`${item.groupname ? item.groupname : "نا شناس"}`}</div>
                     <span className="time">{
                         !item.lastMessageAt ? "-" :
                             toFarsiNumber(ConvertDateToCalendarString(item.lastMessageAt.split(".")[0]))
-                        // toFarsiNumber(ConvertGregorianToJalali(item.lastMessageAt.split('.')[0], itemConfig.showDateTime ? itemConfig.showDateTime : false))
+                         // toFarsiNumber(ConvertGregorianToJalali(item.lastMessageAt.split('.')[0], itemConfig.showDateTime ? itemConfig.showDateTime : false))
                     }</span>
                 </div>
                 <div className="chat-context">
-                    <div className="text">
+                    <div className={`text ${parseInt(item.unreadmessages) > 1 ? 'unreadmessage' : ''}`}>
                         <p>{MessageSeeder(item.lastMessage)}</p>
                     </div>
                     {
-                        item.unreadCount > 0 ?
-                            <div className="status delivered">
-                                {item.unreadCount}
+                        parseInt(item.unreadmessages) > 1 ?
+                            <div className="status delivered unreadcount">
+                                {item.unreadmessages}
                             </div> :
                             ''
                     }

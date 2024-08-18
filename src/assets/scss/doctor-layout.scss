@@ -1288,6 +1288,18 @@ body {
   bottom: 0px !important;
   //left: 0px !important;
 }
+.unreadmessage{
+  font-weight: 800 !important;
+  color: #000 !important;
+}
+.unreadcount{
+  background-color: #1c6ca1 !important;
+  color: #fff !important;
+  border-radius: 25px !important;
+  width: 25px;
+  height: 25px;
+  justify-content: center;
+}
 
 .front-camera {
   position: absolute;
