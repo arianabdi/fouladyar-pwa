@@ -40,7 +40,6 @@ const Pages = () => {
 
                 <Route path="" element={<Layout/>}>
                     {/*Fouladyar*/}
-                    <Route path="" element={<Home/>}></Route>
                     <Route path="/home" element={<Home/>}></Route>
                     <Route path="/chat-list" element={<ChatList/>}></Route>
                     <Route path="/chat-detail/:chatId" element={<ChatDetail/>}></Route>

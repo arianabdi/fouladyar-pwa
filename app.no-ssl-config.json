@@ -1,0 +1,11 @@
+
+{
+  "apps": [
+    {
+      "name": "fouladyar-pwa-no-ssl",
+      "script": "npx",
+      "interpreter": "none",
+      "args": "serve -s dist -l 3000 --no-clipboard"
+    }
+  ]
+}
