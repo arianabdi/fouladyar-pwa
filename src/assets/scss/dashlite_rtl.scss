@@ -285,6 +285,9 @@ display: flex;
   justify-content: center;
   padding: 10px 0px;
 }
+.chat-meta li:not(:first-child):before{
+  display: none !important;
+}
 .product-image-list-wrapper{
   width: 100%;
   overflow: scroll;

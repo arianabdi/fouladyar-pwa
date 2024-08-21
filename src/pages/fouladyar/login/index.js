@@ -29,11 +29,6 @@ const Login = () => {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    // useEffect(()=>{
-    //     if(checkAuthToken(auth.token))
-    //         navigate('/chat-list')
-    // }, [])
-
 
     async function onLogin() {
         try {
