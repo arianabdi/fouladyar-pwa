@@ -38,13 +38,27 @@ const Sidebar = ({fixed, className}) => {
     }
 
     function SocialMedia() {
+
+        const openInstagram = () => {
+            window.open('https://www.instagram.com/fouladyargroup1382/', '_blank');
+        };
+        const openLinkedin = () => {
+            window.open('https://www.linkedin.com/company/fouladyar/', '_blank');
+        };
+        const openTelegram = () => {
+            window.open('https://t.me/fouladyar', '_blank');
+        };
+        const openDialPad = () => {
+            window.open('tel:021-72125', '_blank');
+        };
+
         return (
             <div className="sidebar-items-padding d-flex flex-column flex-grow-1  justify-content-center align-items-center">
                 <div className="navbar-icons d-flex flex-row-reverse">
-                    <div className="icon-item"><FaInstagram size={27} color={"#526484"}/></div>
-                    <div className="icon-item"><TbBrandTelegram size={27} color={"#526484"}/></div>
-                    <div className="icon-item"><IoLogoLinkedin size={27} color={"#526484"}/></div>
-                    <div className="icon-item"><MdPhone size={27} color={"#526484"}/></div>
+                    <div className="icon-item" onClick={() => {openInstagram()}}><FaInstagram size={27} color={"#526484"}/></div>
+                    <div className="icon-item" onClick={() => {openTelegram()}}><TbBrandTelegram size={27} color={"#526484"}/></div>
+                    <div className="icon-item" onClick={() => {openLinkedin()}}><IoLogoLinkedin size={27} color={"#526484"}/></div>
+                    <div className="icon-item" onClick={() => {openDialPad()}}><MdPhone size={27} color={"#526484"}/></div>
                 </div>
             </div>
         )

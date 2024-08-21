@@ -18,6 +18,7 @@ import Posts from "../pages/fouladyar/posts";
 import SinglePost from "../pages/fouladyar/singlePost";
 import Videos from "../pages/fouladyar/videos";
 import ForgotPassword from "../pages/fouladyar/forgotPassword";
+import AboutUs from "../pages/fouladyar/about-us";
 
 Chart.register(CategoryScale, LinearScale, BarElement, ArcElement, Tooltip, Filler, Legend);
 
@@ -52,6 +53,7 @@ const Pages = () => {
                     <Route path="/product-detail/:productId" element={<ProductDetail/>}></Route>
                     <Route path="/tracking" element={<Tracking/>}></Route>
                     <Route path="/login" element={<Login/>}></Route>
+                    <Route path="/about-us" element={<AboutUs/>}></Route>
                     <Route path="/chat-messages" element={<ChatMessages/>}></Route>
 
 
