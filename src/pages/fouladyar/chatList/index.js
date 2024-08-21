@@ -19,6 +19,8 @@ import {
     selectChats
 } from "../../../redux/store/services/socket/store/socket-selector";
 import {resetUnreadMessage, switchChat} from "../../../redux/store/services/socket/store/socket-actions";
+import checkAuthToken from "../../../shared/checkAuthToken";
+import {clearToken} from "../../../redux/store/services/auth/store";
 
 
 export function parseMessageFromStructuralMessage(customString) {
@@ -168,25 +170,15 @@ const ChatList = () => {
     const activeChatMessages = useSelector(selectActiveChatMessages);
 
     useEffect(() => {
-        async function checkAuthToken() {
-            try {
+        async function checkToken(){
+            const res = await checkAuthToken(auth.token);
 
-                const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/profile`, {
-                    headers: {
-                        authorization: `bearer ${auth.token}`
-                    }
-                });
-
-                console.log('auth token', response.status);
-                if (response.status !== 200)
-                    throw new Error('Your session has expired. Please log in again')
-            } catch (e) {
-                ErrorToaster({message: `Check Auth Token Error: ${e}`})
+            if(!res){
+                dispatch(clearToken())
                 navigate('/login')
             }
         }
-
-        checkAuthToken();
+        checkToken()
     }, [])
 
     useEffect(() => {

@@ -18,6 +18,7 @@ import { TbHome } from "react-icons/tb";
 import {BiRadar, BiSolidMessageRounded} from "react-icons/bi";
 import {BsFillChatFill} from "react-icons/bs";
 import {IoMdHome} from "react-icons/io";
+import checkAuthToken from "../shared/checkAuthToken";
 
 const Layout = ({ title, app, ...props }) => {
 
@@ -99,18 +100,22 @@ const Layout = ({ title, app, ...props }) => {
 
   );
 };
-export default Layout;
-export const BottomNavBar = ({  ...props }) => {
+
+export function BottomNavBar ({  ...props }) {
 
   const { t, i18n } = useTranslation();
+  const auth = useSelector((state) => state.auth);
+
 
 
   return(
-    <div className="bottom-nav-bar">
-      <NavItem link={'/home'} icon={<IoMdHome size={20} color={"#060606"}/>} text={t('خانه')}/>
-      <NavItem link={'/tracking'} icon={<BiRadar size={20} color={"#060606"}/>} text={t('رهگیری حواله')}/>
-      <NavItem link={'/login'} icon={<BiSolidMessageRounded size={20} color={"#060606"}/>} text={t('چت')}/>
-    </div>
+      <div className="bottom-nav-bar">
+        <NavItem link={ '/home'} icon={<IoMdHome size={20} color={"#060606"}/>} text={t('خانه')}/>
+        <NavItem link={'/tracking'} icon={<BiRadar size={20} color={"#060606"}/>} text={t('رهگیری حواله')}/>
+        <NavItem link={!auth.token ? '/login' : '/chat-list'} icon={<BiSolidMessageRounded size={20} color={"#060606"}/>} text={t('چت')}/>
+      </div>
   )
 }
+export default Layout;
+
 

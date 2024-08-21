@@ -13,6 +13,7 @@ import {Field} from "../../../components/fouladyar/field/field";
 import Divider from "../../../shared/divider";
 import {setToken} from "../../../redux/store/services/auth/store";
 import {setProfile} from "../../../redux/store/services/profile/store";
+import checkAuthToken from "../../../shared/checkAuthToken";
 
 
 const Login = () => {
@@ -26,11 +27,12 @@ const Login = () => {
         password: ""
     });
 
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-    useEffect(()=>{
-        if(auth.token)
-            navigate('/chat-list')
-    }, [])
+    // useEffect(()=>{
+    //     if(checkAuthToken(auth.token))
+    //         navigate('/chat-list')
+    // }, [])
 
 
     async function onLogin() {
@@ -44,7 +46,6 @@ const Login = () => {
 
 
             if (res.status === 200 || res.status === 201) {
-
                 const userData = res.data.user;
                 dispatch(setToken(res.data.accessToken));
                 dispatch(setProfile({

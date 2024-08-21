@@ -68,8 +68,7 @@ const App = () => {
     const activeChatMessages = useSelector(selectActiveChatMessages);
 
     useEffect(() => {
-        if (!token)
-            navigate('/login')
+
 
         const socket = io(process.env.REACT_APP_WEBSOCKET_URL, {
             autoConnect: true,
