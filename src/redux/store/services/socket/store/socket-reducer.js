@@ -9,7 +9,7 @@ import {
     SEND_MESSAGE,
     SET_SCROLL_POSITION,
     CLEAR_SOCKET,
-    SWITCH_CHAT,
+    SWITCH_CHAT, INCREASE_UNREAD_MESSAGE, RESET_UNREAD_MESSAGE,
 } from './socket-actions';
 import {transformChatsArrayToObject} from '../utils/transformChats';
 
@@ -45,7 +45,7 @@ const socketReducer = (state = initialState, action) => {
                         messages: [...(state.chats[chatId]?.messages || []), message],
                     }
                 },
-                lastMessage: message
+
             };
         }
         case SEND_MESSAGE: {
@@ -93,6 +93,7 @@ const socketReducer = (state = initialState, action) => {
                     [newChat.id]: {
                         ...newChat,
                         messages: state.chats[newChat.id].messages,
+                        unreadmessages: state.chats[newChat.id].unreadmessages || 0
                     },
                 },
             };
@@ -105,6 +106,32 @@ const socketReducer = (state = initialState, action) => {
                     [state.activeChatId]: {
                         ...state.chats[state.activeChatId],
                         scrollPosition: action.payload
+                    },
+                },
+            };
+        }
+        case INCREASE_UNREAD_MESSAGE: {
+            const {chatId, count} = action.payload;
+            return {
+                ...state,
+                chats: {
+                    ...state.chats,
+                    [chatId]: {
+                        ...state.chats[chatId],
+                        unreadmessages: parseInt(state.chats[chatId].unreadmessages) + count
+                    },
+                },
+            };
+        }
+        case RESET_UNREAD_MESSAGE: {
+            const {chatId} = action.payload;
+            return {
+                ...state,
+                chats: {
+                    ...state.chats,
+                    [chatId]: {
+                        ...state.chats[chatId],
+                        unreadmessages: 0
                     },
                 },
             };

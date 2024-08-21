@@ -18,7 +18,7 @@ import {
     selectActiveChatMessages,
     selectChats
 } from "../../../redux/store/services/socket/store/socket-selector";
-import {switchChat} from "../../../redux/store/services/socket/store/socket-actions";
+import {resetUnreadMessage, switchChat} from "../../../redux/store/services/socket/store/socket-actions";
 
 
 export function parseMessageFromStructuralMessage(customString) {
@@ -36,7 +36,7 @@ export function parseMessageFromStructuralMessage(customString) {
 function ChatItem({item, onClick}) {
 
     useEffect(() => {
-        console.log('unreadMessage', item, parseInt(item.unreadmessages))
+        // console.log('unreadMessage', item, parseInt(item.unreadmessages))
     }, [])
 
     function MessageSeeder(message) {
@@ -75,21 +75,22 @@ function ChatItem({item, onClick}) {
             )}
             <div className="chat-info">
                 <div className="chat-from">
-                    <div className={`name ${parseInt(item.unreadmessages) > 1 ? 'unreadmessage' : ''}`}>{`${item.groupname ? item.groupname : "نا شناس"}`}</div>
+                    <div
+                        className={`name ${parseInt(item.unreadmessages) > 0 ? 'unreadmessage' : ''}`}>{`${item.groupname ? item.groupname : "نا شناس"}`}</div>
                     <span className="time">{
                         !item.lastMessageAt ? "-" :
                             toFarsiNumber(ConvertDateToCalendarString(item.lastMessageAt.split(".")[0]))
-                         // toFarsiNumber(ConvertGregorianToJalali(item.lastMessageAt.split('.')[0], itemConfig.showDateTime ? itemConfig.showDateTime : false))
+                        // toFarsiNumber(ConvertGregorianToJalali(item.lastMessageAt.split('.')[0], itemConfig.showDateTime ? itemConfig.showDateTime : false))
                     }</span>
                 </div>
                 <div className="chat-context">
-                    <div className={`text ${parseInt(item.unreadmessages) > 1 ? 'unreadmessage' : ''}`}>
+                    <div className={`text ${parseInt(item.unreadmessages) > 0 ? 'unreadmessage' : ''}`}>
                         <p>{MessageSeeder(item.lastMessage)}</p>
                     </div>
                     {
-                        parseInt(item.unreadmessages) > 1 ?
+                        parseInt(item.unreadmessages) > 0 ?
                             <div className="status delivered unreadcount">
-                                {toFarsiNumber(parseInt(item.unreadmessages) - 1)}
+                                {toFarsiNumber(parseInt(item.unreadmessages))}
                             </div> :
                             ''
                     }
@@ -167,6 +168,28 @@ const ChatList = () => {
     const activeChatMessages = useSelector(selectActiveChatMessages);
 
     useEffect(() => {
+        async function checkAuthToken() {
+            try {
+
+                const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/profile`, {
+                    headers: {
+                        authorization: `bearer ${auth.token}`
+                    }
+                });
+
+                console.log('auth token', response.status);
+                if (response.status !== 200)
+                    throw new Error('Your session has expired. Please log in again')
+            } catch (e) {
+                ErrorToaster({message: `Check Auth Token Error: ${e}`})
+                navigate('/login')
+            }
+        }
+
+        checkAuthToken();
+    }, [])
+
+    useEffect(() => {
         console.log('chats', chats)
     }, [chats])
 
@@ -231,6 +254,7 @@ const ChatList = () => {
         console.log('selectedChatId', chatId)
         if (socket) {
             dispatch(switchChat(chatId.toString()))
+            dispatch(resetUnreadMessage(chatId));
             navigate('/chat-messages')
         } else {
             ErrorToaster({message: 'Your session has expired. Please log in again'})
@@ -243,7 +267,6 @@ const ChatList = () => {
         await createNewChat(groupId);
         setIsModalOpen(false)
     }
-
 
     async function createNewChat(groupId) {
         try {
@@ -267,7 +290,6 @@ const ChatList = () => {
             ErrorToaster(e)
         }
     }
-
 
 
     return (
@@ -313,7 +335,7 @@ const ChatList = () => {
                                                         key={key} // Add a unique key prop
                                                         item={value}
                                                         onClick={() => {
-                                                            onChatSelect({ chatId: key })
+                                                            onChatSelect({chatId: key})
                                                         }}
                                                     />
                                                 )

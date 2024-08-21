@@ -16,10 +16,10 @@ import {
     selectChats
 } from "./redux/store/services/socket/store/socket-selector";
 import {
-    connectSocket, disconnectSocket,
+    connectSocket, disconnectSocket, increaseUnreadMessage,
     receiveAllChats, receiveAllMessages,
     receiveMessage,
-    receiveNewChat, sendMessage, switchChat
+    receiveNewChat, resetUnreadMessage, sendMessage, switchChat
 } from "./redux/store/services/socket/store/socket-actions";
 import {selectAuthToken} from "./redux/store/services/auth/store/auth-selectors";
 import {io} from "socket.io-client";
@@ -92,11 +92,23 @@ const App = () => {
                 ...message,
                 // isMine: message.isMine
             }));
+            if (message.isMine===false && activeChatId!==message.conversationId){
+                dispatch(increaseUnreadMessage(message.conversationId, 1))
+            }else{
+                dispatch(resetUnreadMessage(message.conversationId))
+            }
+
         });
 
         socket.on('conversations', (e) => {
             console.log('receiveAllChats', e)
-            dispatch(receiveAllChats(e.items.filter(item => item.lastMessage && item.lastMessageAt)));
+            dispatch(receiveAllChats(e.items.filter(item => {
+                if(item.lastMessage && item.lastMessageAt){
+                    return {
+                        ...item
+                    }
+                }
+            })));
         });
 
         socket.on('conversationMessages', (e) => {

@@ -159,7 +159,7 @@ ${message}
         } else {
             if (message !== "" || message !== null) {
                 if (socket) {
-                    console.log('socket connected!', socket)
+                    // console.log('socket connected!', socket)
                     socket.emit("addMessage", {
                         "conversationId": parseInt(activeChatId),
                         "text": message

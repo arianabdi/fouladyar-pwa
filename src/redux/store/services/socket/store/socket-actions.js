@@ -9,6 +9,8 @@ export const RECEIVE_ALL_MESSAGES = 'RECEIVE_ALL_MESSAGES';
 export const RECEIVE_NEW_CHAT = 'RECEIVE_NEW_CHAT';
 export const SET_SCROLL_POSITION = 'SET_SCROLL_POSITION';
 export const CLEAR_SOCKET = 'CLEAR_SOCKET';
+export const INCREASE_UNREAD_MESSAGE = 'INCREASE_UNREAD_MESSAGE';
+export const RESET_UNREAD_MESSAGE = 'RESET_UNREAD_MESSAGE';
 
 
 
@@ -60,4 +62,13 @@ export const setScrollPosition = (position) => ({
 export const clearSocket = (position) => ({
     type: CLEAR_SOCKET,
     payload: position ,
+});
+
+export const increaseUnreadMessage = (chatId, count) => ({
+    type: INCREASE_UNREAD_MESSAGE,
+    payload: {chatId, count} ,
+});
+export const resetUnreadMessage = (chatId) => ({
+    type: RESET_UNREAD_MESSAGE,
+    payload: {chatId},
 });

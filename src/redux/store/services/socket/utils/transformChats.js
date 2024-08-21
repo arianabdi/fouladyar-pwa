@@ -4,6 +4,7 @@ export const transformChatsArrayToObject = (chatsArray) => {
         acc[chat.id] = {
             ...chat,
             messages: chat.messages || [],
+            unreadmessages: 0
         };
         return acc;
     }, {});
