@@ -324,25 +324,24 @@ ${parseMessageFromStructuralMessage(message)}
     };
 
     function openForwardMessageModal() {
-        setModalComponent(<>empty</>
-            // <ForwardMessageModal
-            //     onSendMessageUsingForward={async (e) => {
-            //         forwardMessage({
-            //             chatId: e,
-            //             name: selectedMessage.user.fullName,
-            //             message: selectedMessage.text
-            //         });
-            //     }}
-            //     onSendMessageUsingForwardCustomer={async (e) => {
-            //
-            //         forwardMessageCustomer({
-            //             chatId: e,
-            //             name: selectedMessage.user.fullName,
-            //             message: selectedMessage.text
-            //         });
-            //     }}
-            // />
-        );
+        /*setModalComponent(
+            <ForwardMessageModal
+                onSendMessageUsingForward={async (e) => {
+                    forwardMessage({
+                        chatId: e,
+                        name: selectedMessage.user.fullName,
+                        message: selectedMessage.text
+                    });
+                }}
+                onSendMessageUsingForwardCustomer={async (e) => {
+                    forwardMessageCustomer({
+                        chatId: e,
+                        name: selectedMessage.user.fullName,
+                        message: selectedMessage.text
+                    });
+                }}
+            />
+        );*/
         setIsModalOpen(true);
     }
 
@@ -361,8 +360,8 @@ ${parseMessageFromStructuralMessage(message)}
                     <div ref={menuRef} className="context-menu message-action-menu"
                          style={{width: menuWidth, top: menuPosition.y, left: menuPosition.x}}>
                         <ul>
-                            <li onClick={() => {
-                                openForwardMessageModal();
+                            <li className="disabled" onClick={() => {
+                                // openForwardMessageModal();
                             }}>ارسال پیام
                             </li>
                             <li onClick={() => {
