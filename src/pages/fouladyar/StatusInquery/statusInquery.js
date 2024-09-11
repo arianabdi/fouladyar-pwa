@@ -34,13 +34,13 @@ import {CgCloseO} from "react-icons/cg";
 
 
 const StatusInquery = ({
-                         number,
-                         onPress,
-                         loading,
-                         className,
-                         isSubmittingFromOutside,
-                         trackingNumber
-                       }) => {
+     number,
+     onPress,
+     loading,
+     className,
+     isSubmittingFromOutside,
+     trackingNumber
+   }) => {
 
 
 

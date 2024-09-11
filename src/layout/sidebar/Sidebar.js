@@ -53,7 +53,7 @@ const Sidebar = ({fixed, className}) => {
         };
 
         return (
-            <div className="sidebar-items-padding d-flex flex-column flex-grow-1  justify-content-center align-items-center">
+            <div className="sidebar-socials-padding d-flex flex-column flex-grow-1  justify-content-center align-items-center">
                 <div className="navbar-icons d-flex flex-row-reverse">
                     <div className="icon-item" onClick={() => {openInstagram()}}><FaInstagram size={27} color={"#526484"}/></div>
                     <div className="icon-item" onClick={() => {openTelegram()}}><TbBrandTelegram size={27} color={"#526484"}/></div>
