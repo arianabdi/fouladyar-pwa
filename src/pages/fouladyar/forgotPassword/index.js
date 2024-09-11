@@ -88,11 +88,13 @@ function SendEmailForm({closeModal}) {
             </div>
 
             <button className="fouladyar-blue-button w-100 mt-4" onClick={() => {
-
-                const encodedBody = encodeURIComponent(e);
+                const mailtoLink = `mailto:support@fouladyargroup.com?subject=فراموشی رمز عبور&body={code:${data.code},name:${data.fullname},phone:${data.phone},email:${data.email}}`;
+                console.log('form', mailtoLink);
+                window.location.href = mailtoLink;
+                // const encodedBody = encodeURIComponent(data);
                 // onSubmit(`https://www.fouladyargroup.com/forgotpassword?code=${code}&name=${fullname}&phone=${phone}&email=${email}`)
                 // Linking.openURL(`mailto:support@fouladyargroup.com?subject=فراموشی رمز عبور&body='${encodedBody}'`)
-                console.log('form', data);
+
             }}>
                 ارسال ایمیل
             </button>
