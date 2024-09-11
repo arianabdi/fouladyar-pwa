@@ -35,12 +35,13 @@ import {CgCloseO} from "react-icons/cg";
 
 const StatusInquery = ({
                          number,
-                         setNumber,
                          onPress,
                          loading,
                          className,
+                         isSubmittingFromOutside,
                          trackingNumber
                        }) => {
+
 
 
   const [_number, set_number] = useState({
@@ -53,8 +54,28 @@ const StatusInquery = ({
     part7: ""
   });
   const [showErr, setShowErr] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [focusedTextInput, setFocusedTextInput] = useState(0);
   const [addedT, setAddedT] = useState(0);
+
+  useEffect(() => {
+    if(Object.keys(number).length > 0 && isSubmittingFromOutside) {
+      console.log('num', number)
+      set_number(number)
+      if(number.part5) setAddedT(1);
+      if(number.part6) setAddedT(2);
+      if(number.part7) setAddedT(3);
+
+    }
+  }, [number])
+  useEffect(() => {
+      if(_number.part1 && _number.part2 && _number.part3 && _number.part4 && isSubmittingFromOutside){
+        console.log('calling', isSubmittingFromOutside)
+        onSubmit()
+      }
+
+  }, [_number])
+
   useEffect(() => {
     if (trackingNumber && trackingNumber.part1) {
       set_number(trackingNumber);

@@ -61,15 +61,7 @@ const Home = () => {
   const [eventFeedItems, setEventFeedItems] = useState([]);
 
   const loadedProducts = useSelector((state) => state.products);
-  const [number, setNumber] = useState({
-    part1: "",
-    part2: "",
-    part3: "",
-    part4: "",
-    part5: "",
-    part6: "",
-    part7: ""
-  });
+  const [number, setNumber] = useState({});
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalComponent, setModalComponent] = useState(<div>empty</div>);
   const [products, setProducts] = useState([]);
@@ -177,7 +169,7 @@ const Home = () => {
                   <StatusInquery
                     number={number}
                     onPress={async (e) => {
-                      navigate(`/tracking`)
+                      navigate(`/tracking?part1=${e.part1}&part2=${e.part2}&part3=${e.part3}&part4=${e.part4}&part5=${e.part5}&part6=${e.part6}&part7=${e.part7}&isSubmitting=true`)
                     }}
                   />
 

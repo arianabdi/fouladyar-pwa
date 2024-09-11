@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useSearchParams} from "react-router-dom";
 import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
 import axios from "axios";
 import {useTranslation} from "react-i18next";
@@ -17,6 +17,19 @@ const Tracking = () => {
     const auth = useSelector((state) => state.auth);
     const profile = useSelector((state) => state.profile);
 
+    const [searchParams] = useSearchParams();
+    const part1 = searchParams.get('part1');
+    const part2 = searchParams.get('part2');
+    const part3 = searchParams.get('part3');
+    const part4 = searchParams.get('part4');
+    const part5 = searchParams.get('part5');
+    const part6 = searchParams.get('part6');
+    const part7 = searchParams.get('part7');
+    const isSubmitting = searchParams.get('isSubmitting');
+
+
+
+
     const {t, i18n} = useTranslation();
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
@@ -24,15 +37,29 @@ const Tracking = () => {
 
     ]);
 
-    const [number, setNumber] = useState({
-        part1: "",
-        part2: "",
-        part3: "",
-        part4: "",
-        part5: "",
-        part6: "",
-        part7: ""
-    });
+    const [isSubmittingFromOutside, setIsSubmittingFromOutside] = useState(false);
+    const [number, setNumber] = useState({});
+
+    useEffect(() => {
+        if(isSubmittingFromOutside){
+            console.log('oyoyoy', part1, part2, part3, part4, part5 )
+            setNumber({
+                part1: part1,
+                part2: part2,
+                part3: part3,
+                part4: part4,
+                part5: part5,
+                part6: part6,
+                part7: part7
+            })
+        }
+    },  [isSubmittingFromOutside])
+
+
+    useEffect(() => {
+        if(isSubmitting)
+            setIsSubmittingFromOutside(true)
+    },  [isSubmitting])
 
     async function onPress(e) {
         try {
@@ -80,6 +107,7 @@ const Tracking = () => {
                                 <div className="container  m-0 ps-0 pe-0" style={{paddingBottom: "3rem"}}>
                                     <StatusInquery
                                         number={number}
+                                        isSubmittingFromOutside={isSubmittingFromOutside}
                                         onPress={async (e) => {
                                             await onPress(e)
                                         }}
