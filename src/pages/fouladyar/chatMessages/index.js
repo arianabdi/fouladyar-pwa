@@ -588,11 +588,6 @@ ${parseMessageFromStructuralMessage(message)}
                                                     onClick={async (e) => {
                                                         if (messageInput)
                                                             await onSendMessage(messageInput);
-                                                        // setActiveChatMessages(prevstate => {
-                                                        //     return([
-                                                        //         ...prevstate,
-                                                        //     ])
-                                                        // })
                                                         scrollToBottom();
 
                                                     }}
