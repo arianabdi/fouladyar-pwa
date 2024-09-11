@@ -26,11 +26,13 @@ import {IoMdClose} from "react-icons/io";
 import avatar from "../../components/Avatar";
 
 
+
+
 const ChatMessages = () => {
     // Redux Selector
 
     const [Uchat, setUchat] = useState({});
-    const [messageInput, setMessageInput] = useState();
+    const [messageInput, setMessageInput] = useState(null);
     const socket = useSelector((state) => state.socket.socket);
 
     const [replyMsg, setReplyMsg] = useState(``);
@@ -412,7 +414,22 @@ ${parseMessageFromStructuralMessage(message)}
     });
 
 
+    function Attachment() {
+        return (
+            <div className="nk-chat-editor-upload  ms-n1">
+                <Button
+                    size="sm"
+                    className={`btn-icon btn-trigger text-primary attach-btn`}
+                    onClick={() => {
+                        onChatOptions();
+                    }}
+                >
+                    <ImAttachment size={20} color={"#000"}/>
+                </Button>
 
+            </div>
+        );
+    }
 
 
 
@@ -541,18 +558,7 @@ ${parseMessageFromStructuralMessage(message)}
                                 </div>
                                 <ReplayMessageBox/>
                                 <div className="nk-chat-editor">
-                                    <div className="nk-chat-editor-upload  ms-n1">
-                                        <Button
-                                            size="sm"
-                                            className={`btn-icon btn-trigger text-primary attach-btn`}
-                                            onClick={() => {
-                                                onChatOptions();
-                                            }}
-                                        >
-                                            <ImAttachment size={20} color={"#000"}/>
-                                        </Button>
-
-                                    </div>
+                                    {/*<Attachment/>*/}
                                     <div className="nk-chat-editor-form">
                                         <div className="form-control-wrap">
                                     <textarea
@@ -585,20 +591,6 @@ ${parseMessageFromStructuralMessage(message)}
                                                         // setActiveChatMessages(prevstate => {
                                                         //     return([
                                                         //         ...prevstate,
-                                                        //
-                                                        //         {
-                                                        //             id: prevstate.length+2,
-                                                        //             text: '===== 1 =======',
-                                                        //             group: '',
-                                                        //             isMine: true,
-                                                        //             createdAt: '',
-                                                        //             user: {
-                                                        //                 theme: '',
-                                                        //                 name: 'آرین عبدی',
-                                                        //                 image: '',
-                                                        //                 userfirstname: '233333xcsdf'
-                                                        //             }
-                                                        //         },
                                                         //     ])
                                                         // })
                                                         scrollToBottom();
