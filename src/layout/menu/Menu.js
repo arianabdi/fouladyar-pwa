@@ -16,18 +16,19 @@ const MenuHeading = ({heading}) => {
 };
 
 const MenuItem = ({
-                      icon,
-                      link,
-                      text,
-                      isDivider,
-                      authGuard,
-                      sub,
-                      newTab,
-                      mobileView,
-                      sidebarToggle,
-                      badge,
-                      ...props
-                  }) => {
+      icon,
+      link,
+      text,
+      isDivider,
+      authGuard,
+      sub,
+      newTab,
+      mobileView,
+      sidebarToggle,
+      badge,
+    onClick,
+      ...props
+  }) => {
     let currentUrl;
 
     const auth = useSelector((state) => state.auth);
@@ -173,7 +174,10 @@ const MenuItem = ({
         <>
             {
                 !authGuard || (authGuard && auth.token) ?
-                    <li className={menuItemClass} onClick={(e) => toggleActionSidebar(e)}>
+                    <li className={menuItemClass} onClick={(e) => {
+                        toggleActionSidebar(e)
+                        onClick()
+                    }}>
 
                         {
                             authGuard && auth.token ?
@@ -243,7 +247,7 @@ const MenuSub = ({icon, link, text, sub, sidebarToggle, mobileView, ...props}) =
     );
 };
 
-const Menu = ({sidebarToggle, mobileView}) => {
+const Menu = ({sidebarToggle, mobileView, onClick}) => {
 
 
     return (
@@ -264,6 +268,7 @@ const Menu = ({sidebarToggle, mobileView}) => {
                             sub={item.subMenu}
                             sidebarToggle={sidebarToggle}
                             mobileView={mobileView}
+                            onClick={onClick}
                         />
                     )
                 )

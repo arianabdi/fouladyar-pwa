@@ -72,14 +72,15 @@ const Sidebar = ({fixed, className}) => {
                 </div>
             </div>
         )
-    }
+    }  // Function to close the sidebar
+
 
     return (
         <>
             <div className={`${classes} d-flex flex-column`}>
                 <div className="sidebar-container d-flex flex-column justify-content-between">
                     <Profile/>
-                    <Menu/>
+                    <Menu onClick={themeUpdate.sidebarVisibility}/>
                     <SocialMedia/>
                     <FouladyarLogo/>
                 </div>
