@@ -91,10 +91,6 @@ function SendEmailForm({closeModal}) {
                 const mailtoLink = `mailto:support@fouladyargroup.com?subject=فراموشی رمز عبور&body={code:${data.code},name:${data.fullname},phone:${data.phone},email:${data.email}}`;
                 console.log('form', mailtoLink);
                 window.location.href = mailtoLink;
-                // const encodedBody = encodeURIComponent(data);
-                // onSubmit(`https://www.fouladyargroup.com/forgotpassword?code=${code}&name=${fullname}&phone=${phone}&email=${email}`)
-                // Linking.openURL(`mailto:support@fouladyargroup.com?subject=فراموشی رمز عبور&body='${encodedBody}'`)
-
             }}>
                 ارسال ایمیل
             </button>
@@ -112,10 +108,13 @@ const ForgotPassword = () => {
     const {state} = location;
 
 
-    useEffect(() => {
 
-    }, [])
+    const callPhoneNumber = () => {
+        const phoneNumber = '02172125'; // Replace with your phone number
+        const telLink = `tel:${phoneNumber}`;
 
+        window.location.href = telLink; // This will open the phone dialer or default app on mobile devices
+    };
 
     return (
 
@@ -150,10 +149,7 @@ const ForgotPassword = () => {
                     <div className={"buttonWrapper flex-column"}>
                         <button
                             className={"w-100"}
-                            onClick={() => {
-                                // Linking.openURL(`tel:02172125`)
-                                // window.open(state.permalink, '_blank', 'noopener,noreferrer');
-                            }}
+                            onClick={callPhoneNumber}
                         >
                             تماس با پشتیبانی
                         </button>
@@ -161,7 +157,6 @@ const ForgotPassword = () => {
                             className={"w-100"}
                             onClick={() => {
                                 setIsModalOpen(true)
-                                // window.open(state.permalink, '_blank', 'noopener,noreferrer');
                             }}
                         >
                             ارسال ایمیل به پشتیبانی
