@@ -23,7 +23,7 @@ export const YouChat = ({item, chat, isSelected, onContextMenu, menuWidth, menuH
         // Check if the bottom position is less than half of the screen height
         const isBottomHalf = bottomPosition < halfScreenHeight;
 
-        console.log('handleRightClick', {x: clientX, y: clientY})
+        console.log('handleRightClick',item, {x: clientX, y: clientY})
         onContextMenu(
             {x: (leftPosition), y: isBottomHalf ? (bottomPosition + gap) : (topPosition - gap - menuHeight)},
             item

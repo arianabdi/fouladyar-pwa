@@ -223,6 +223,7 @@ ${message}
                         "conversationId": parseInt(activeChatId),
                         "text": message
                     });
+
                     setMessageInput('')
                     setReplyFormattedMsg('');
                     setMenuVisible(false);
@@ -327,20 +328,10 @@ ${message}
 
     async function forwardMessage(groupId) {
         // const {chatId, name, message} = e;
-//
-//         onForwardMessage(
-//             chatId,
-//             `
-// <^>
-// {"type":"forward","name":"${name}"}
-// <^>
-// ${parseMessageFromStructuralMessage(message)}
-// `
-//         );
 
 
         try {
-            console.log('createNewChat', groupId, profile.id)
+
             const res = await axios.post(
                 `${process.env.REACT_APP_API_URL}/conversation`,
                 {
@@ -355,9 +346,21 @@ ${message}
                 console.log('createNewChat', res.data)
                 dispatch(switchChat(res.data.id.toString()))
 
+                socket.emit("addMessage", {
+                    "conversationId": parseInt(res.data.id.toString()),
+                    "text": `
+<^>
+{"type":"forward","name":"${selectedMessage.user.fullName}"}
+<^>
+${parseMessageFromStructuralMessage(selectedMessage.text)}
+`
+                });
+
                 setIsModalOpen(false);
                 // navigate('/chat-messages')
             }
+
+
         } catch (e) {
             ErrorToaster(e)
         }
