@@ -3,7 +3,7 @@ import {IoArrowForwardSharp, IoMenuOutline} from "react-icons/io5";
 import {useTheme, useThemeUpdate} from '../provider/Theme';
 import classNames from "classnames";
 import headerLogo from "../../assets/images/fouladyar/headerLogo.png";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate, useSearchParams} from "react-router-dom";
 
 export function FixedHeader({title, useBack, fixed, className, onTitleClick}) {
     const theme = useTheme();
@@ -16,7 +16,8 @@ export function FixedHeader({title, useBack, fixed, className, onTitleClick}) {
         [`is-${theme.header}`]: theme.header !== "white" && theme.header !== "light",
         [`${className}`]: className,
     });
-
+    const [searchParams] = useSearchParams();
+    const location = useLocation();
     return (
         <div className="fixed-header d-flex flex-row justify-content-between align-content-center">
 
@@ -30,7 +31,16 @@ export function FixedHeader({title, useBack, fixed, className, onTitleClick}) {
                         </div>
                     </div> :
                     <div className="fixed-header-back" onClick={() => {
-                        navigate(-1)
+                        // navigate(-1)
+                        // Check if there are query parameters in the current URL
+                        if (searchParams.toString()) {
+                            // First step: remove query parameters by navigating to the same route without them
+                            const cleanUrl = location.pathname; // This gives you the route without query params
+                            navigate(cleanUrl, { replace: true });
+                        } else {
+                            // Second step: go back to the previous route
+                            navigate(-1);
+                        }
                     }}>
                         <IoArrowForwardSharp size={22} color={"#4f5050"}/>
                     </div>

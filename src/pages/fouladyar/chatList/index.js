@@ -247,7 +247,8 @@ const ChatList = () => {
         if (socket) {
             dispatch(switchChat(chatId.toString()))
             dispatch(resetUnreadMessage(chatId));
-            navigate('/chat-messages')
+            // navigate('/chat-messages')
+            navigate(`/chat-messages/${chatId}`)
         } else {
             ErrorToaster({message: 'Your session has expired. Please log in again'})
             navigate('/login')
@@ -276,7 +277,7 @@ const ChatList = () => {
 
                 console.log('createNewChat', res.data)
                 dispatch(switchChat(res.data.id.toString()))
-                navigate('/chat-messages')
+                navigate(`/chat-messages/${res.data.id.toString()}`)
             }
         } catch (e) {
             ErrorToaster(e)

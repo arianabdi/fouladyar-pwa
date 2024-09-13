@@ -55,7 +55,7 @@ const Pages = () => {
                     <Route path="/tracking" element={<Tracking/>}></Route>
                     <Route path="/login" element={<Login/>}></Route>
                     <Route path="/about-us" element={<AboutUs/>}></Route>
-                    <Route path="/chat-messages" element={<ChatMessages/>}></Route>
+                    <Route path="/chat-messages/:chatId" element={<ChatMessages/>}></Route>
 
 
                     <Route path="/payment-method/:packageId" element={<Payment/>}></Route>

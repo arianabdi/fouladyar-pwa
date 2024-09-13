@@ -112,7 +112,7 @@ export function BottomNavBar ({  ...props }) {
       <div className="bottom-nav-bar">
         <NavItem link={ '/home'} icon={<IoMdHome size={20} color={"#060606"}/>} text={t('خانه')}/>
         <NavItem link={'/tracking'} icon={<BiRadar size={20} color={"#060606"}/>} text={t('رهگیری حواله')}/>
-        <NavItem link={!auth.token ? '/login' : '/chat-list'} icon={<BiSolidMessageRounded size={20} color={"#060606"}/>} text={t('چت')}/>
+        <NavItem link={!auth.token ? '/login' : '/chat-list'} icon={<BiSolidMessageRounded size={20} color={"#060606"}/>} text={t('کانال گفتگو')}/>
       </div>
   )
 }

@@ -14,6 +14,8 @@ import Divider from "../../../shared/divider";
 import {setToken} from "../../../redux/store/services/auth/store";
 import {setProfile} from "../../../redux/store/services/profile/store";
 import checkAuthToken from "../../../shared/checkAuthToken";
+import {FiEyeOff} from "react-icons/fi";
+import {LuEye} from "react-icons/lu";
 
 
 const Login = () => {
@@ -26,8 +28,11 @@ const Login = () => {
         username: "",
         password: ""
     });
-
+    const [showPassword, setShowPassword] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false)
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword); // Toggle the state
+    };
 
 
     async function onLogin() {
@@ -97,19 +102,27 @@ const Login = () => {
                                                     }));
                                                 }}
                                             />
-                                            <Field
-                                                id={"password"}
-                                                name={"password"}
-                                                label={t('رمز عبور')}
-                                                type={"password"}
-                                                value={form.password}
-                                                onChange={(e) => {
-                                                    setForm(prevState => ({
-                                                        ...prevState,
-                                                        password: e
-                                                    }));
-                                                }}
-                                            />
+                                            <div className="password-container">
+                                                <Field
+                                                    id={"password"}
+                                                    name={"password"}
+                                                    label={t('رمز عبور')}
+                                                    type={showPassword ? 'text' : 'password'}
+                                                    value={form.password}
+                                                    onChange={(e) => {
+                                                        setForm(prevState => ({
+                                                            ...prevState,
+                                                            password: e
+                                                        }));
+                                                    }}
+                                                />
+                                                <span
+                                                    className="eye"
+                                                    onClick={togglePasswordVisibility}
+                                                >
+                                              {showPassword ? <FiEyeOff size={20} color={"#1e1e1e"}/> : <LuEye  size={20}  color={"#1e1e1e"}/>} {/* Simple emoji for the eye, replace with an icon if desired */}
+                                            </span>
+                                            </div>
                                             <button className="fouladyar-blue-button w-100 mt-4"
                                                     onClick={async () => {
                                                         await onLogin()

@@ -27,7 +27,17 @@
   font-size: 15px;
   padding: 10px 0px;
 }
-
+.password-container{
+  position: relative;
+}
+.password-container .eye{
+  position: absolute;
+  left: 1rem;
+  bottom: 0px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: fit-content;
+}
 .navbar-icons{
   gap: 15px;
 }

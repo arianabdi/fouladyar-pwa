@@ -7,7 +7,7 @@ import {selectUserProfile} from "../../../redux/store/services/profile/store/pro
 
 import {clearToken} from "../../../redux/store/services/auth/store";
 import {clearProfile} from "../../../redux/store/services/profile/store/profile-actions";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {FixedHeader} from "../../../layout/header/Fixed-Header";
 import {MeChat, parseCustomFormat, parseMessageFromStructuralMessage} from "./components/MeChat";
 import {
@@ -29,7 +29,7 @@ import axios from "axios";
 import {ErrorToaster} from "../../../shared/toaster";
 import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
 import {switchChat} from "../../../redux/store/services/socket/store/socket-actions";
-
+import { useSearchParams } from 'react-router-dom';
 
 function ForwardMessageModal({closeModal,  onForwardMessage}) {
 
@@ -85,10 +85,10 @@ const ChatMessages = () => {
     const [Uchat, setUchat] = useState({});
     const [messageInput, setMessageInput] = useState(null);
     const socket = useSelector((state) => state.socket.socket);
-
+    const [searchParams] = useSearchParams();
     const [replyMsg, setReplyMsg] = useState(``);
     const [replyFormattedMsg, setReplyFormattedMsg] = useState(``);
-
+    const { chatId } = useParams();
     const token = useSelector(selectAuthToken);
     const profile = useSelector(selectUserProfile)
     // const activeChatMessages = useSelector(selectActiveChatMessages);
@@ -166,6 +166,7 @@ const ChatMessages = () => {
     }, []);
 
     useEffect(() => {
+        console.log('activeChatId', activeChatId)
         if (activeChatId) {
             if (socket) {
                 console.log('activeChatId--------------', activeChatId)
@@ -178,7 +179,7 @@ const ChatMessages = () => {
                 });
             }
         }
-    }, [activeChatId])
+    }, [activeChatId, socket])
 
     useEffect(() => {
         if (menuRef.current) {
@@ -186,6 +187,12 @@ const ChatMessages = () => {
             setMenuHeight(height);
         }
     }, [menuWidth, menuPosition]);
+
+    useEffect(() => {
+        if (chatId) {
+            dispatch(switchChat(chatId))
+        }
+    }, [chatId]);
 
     useEffect(() => {
         // Focus on the textarea when the component mounts or when messageInput changes
