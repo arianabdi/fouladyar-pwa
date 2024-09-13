@@ -153,7 +153,7 @@ export const MeChat = ({item, chat, isSelected, onContextMenu, menuWidth, menuHe
                                     }}
                                          className={`chat-msg bg-${chat.chatTheme} ${className} ${isSelected ? 'mechat-selected' : ''}`}>
 
-                                        {/*{action_proper(item.text)}*/}
+                                        {action_proper(item.text)}
                                         <ul className="chat-meta">
                                             {message_proper(item.text)}
                                             <li>{item.user ? item.user.userfirstname : ''}</li>
