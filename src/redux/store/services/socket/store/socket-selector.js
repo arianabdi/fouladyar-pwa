@@ -16,6 +16,7 @@ export const selectActiveChatId = createSelector(
 export const selectActiveChatMessages = createSelector(
     [selectChats, selectActiveChatId],
     (chats, activeChatId) => {
+        console.log('اینجا داره فعال میشه', activeChatId, chats)
         if(activeChatId){
             return chats[activeChatId]?.messages || []
         }else{

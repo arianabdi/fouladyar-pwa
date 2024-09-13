@@ -24,9 +24,60 @@ import {toFarsiNumber} from "../../../shared/toFarsiNumber";
 import {ConvertGregorianToJalali} from "../../../shared/convertGregorianToJalali";
 import {IoMdClose} from "react-icons/io";
 import avatar from "../../components/Avatar";
+import {useTranslation} from "react-i18next";
+import axios from "axios";
+import {ErrorToaster} from "../../../shared/toaster";
+import ModalHelper from "../../../components/fouladyar/modal-helper/modalHelper";
+import {switchChat} from "../../../redux/store/services/socket/store/socket-actions";
 
 
+function ForwardMessageModal({closeModal,  onForwardMessage}) {
 
+    const {t, i18n} = useTranslation();
+    const [departments, setDepartments] = useState([]);
+
+    useEffect(() => {
+        async function loadDepartmentList() {
+            try {
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/group`);
+
+
+                if (res.status === 200) {
+                    setDepartments(res.data);
+                }
+            } catch (e) {
+                ErrorToaster.error(e, t);
+            }
+        }
+
+        loadDepartmentList();
+    }, []);
+
+
+    return (
+        <div className="department-list-modal">
+            <div className="department-list-title">لطفا یکی از گروه های زیر را جهت ارسال پیام بزنید. شما قادر خواهید بود
+                به اعضای هر گروه پیغام دهید و اعضا در اسرع وقت به شما پیام خواهند داد
+            </div>
+            <div className='department-list'>
+
+                {departments.map((item) => {
+                    return (
+                        <div key={item.id} className="department-item" onClick={async () => {
+                            await onForwardMessage(item.id)
+                        }}>{item.name}</div>
+                    )
+                })}
+            </div>
+
+            <button className="fouladyar-blue-button w-100 mt-4" onClick={() => {
+                closeModal()
+            }}>
+                ارسال پیام
+            </button>
+        </div>
+    )
+}
 
 const ChatMessages = () => {
     // Redux Selector
@@ -73,7 +124,6 @@ const ChatMessages = () => {
         // dispatch(setScrollPosition(e.target.scrollTop));
     };
     useEffect(() => {
-        console.log('lastMessage', lastMessage)
         if (lastMessage)
             setActiveChatMessages(prevState => {
                 return ([
@@ -82,25 +132,21 @@ const ChatMessages = () => {
                 ])
             })
         scrollToBottom();
-    }, [lastMessage]);
-
+    }, [lastMessage, activeChatId]);
 
     useEffect(() => {
-        console.log('replyMsg', replyMsg)
-        console.log('replyMsg', parseCustomFormat(replyMsg)[0])
+        // console.log('replyMsg', replyMsg)
+        // console.log('replyMsg', parseCustomFormat(replyMsg)[0])
         // setReplyMsg(parseCustomFormat(replyMsg)[0] || "");
     }, [replyMsg]);
 
     useEffect(() => {
-        console.log('prevMessage', prevMessages)
+        // console.log('prevMessage', prevMessages)
         if(prevMessages)
             setActiveChatMessages([...prevMessages])
     }, [prevMessages]);
 
     useEffect(() => {
-
-
-        console.log("chatMessage useEffect!")
         const handleClickOutside = (event) => {
             if (menuRef.current && !menuRef.current.contains(event.target)) {
                 setMenuVisible(false);
@@ -119,12 +165,10 @@ const ChatMessages = () => {
         };
     }, []);
 
-
-
     useEffect(() => {
-        console.log('activeChatId', activeChatId)
         if (activeChatId) {
             if (socket) {
+                console.log('activeChatId--------------', activeChatId)
                 socket.emit('paginateMessages', {
                     conversationId: parseInt(activeChatId.toString()),
                     pageOptionsDto: {
@@ -136,10 +180,23 @@ const ChatMessages = () => {
         }
     }, [activeChatId])
 
+    useEffect(() => {
+        if (menuRef.current) {
+            const height = menuRef.current.getBoundingClientRect().height;
+            setMenuHeight(height);
+        }
+    }, [menuWidth, menuPosition]);
+
+    useEffect(() => {
+        // Focus on the textarea when the component mounts or when messageInput changes
+        if (textareaRef.current) {
+            textareaRef.current.focus();
+        }
+    }, [messageInput]); // Add messageInput as a dependency
 
     const onSendMessage = async (message) => {
 
-        console.log('onSendMessage', activeChatId, message);
+        // console.log('onSendMessage', activeChatId, message);
 
         if (replyFormattedMsg.length > 0) {
             const messageWithReply = `
@@ -173,13 +230,6 @@ ${message}
             }
         }
     };
-
-    useEffect(() => {
-        if (menuRef.current) {
-            const height = menuRef.current.getBoundingClientRect().height;
-            setMenuHeight(height);
-        }
-    }, [menuWidth, menuPosition]);
 
     const handleContextMenu = (position, item) => {
         setMenuPosition(position);
@@ -252,7 +302,6 @@ ${message}
 
     }
 
-
     function formatDateToYYYYMMDD(d) {
         const date = new Date(d);
         const year = date.getFullYear();
@@ -276,20 +325,52 @@ ${message}
         // const dayOfMonth = date.getDate();
     }
 
-    function forwardMessage(e) {
-        const {chatId, name, message} = e;
+    async function forwardMessage(groupId) {
+        // const {chatId, name, message} = e;
+//
+//         onForwardMessage(
+//             chatId,
+//             `
+// <^>
+// {"type":"forward","name":"${name}"}
+// <^>
+// ${parseMessageFromStructuralMessage(message)}
+// `
+//         );
 
-        onForwardMessage(
-            chatId,
-            `
-<^>
-{"type":"forward","name":"${name}"}
-<^>
-${parseMessageFromStructuralMessage(message)}
-`
-        );
 
-        setMenuVisible(false);
+        try {
+            console.log('createNewChat', groupId, profile.id)
+            const res = await axios.post(
+                `${process.env.REACT_APP_API_URL}/conversation`,
+                {
+                    groupId: groupId,
+                    userId: profile.id,
+                },
+                {headers: {authorization: `bearer ${token}`}},
+            );
+
+            if (res.status === 200 || res.status === 201) {
+
+                console.log('createNewChat', res.data)
+                dispatch(switchChat(res.data.id.toString()))
+
+                setIsModalOpen(false);
+                // navigate('/chat-messages')
+            }
+        } catch (e) {
+            ErrorToaster(e)
+        }
+        // dispatch(switchChat(activeChatId))
+        // socket.emit('paginateMessages', {
+        //     conversationId: parseInt(activeChatId.toString()),
+        //     pageOptionsDto: {
+        //         page: 1,
+        //         take: 20,
+        //     },
+        // });
+
+        // navigate('/chat-messages')
     }
 
     function copyMessage() {
@@ -308,12 +389,7 @@ ${parseMessageFromStructuralMessage(message)}
 
     // Inside your component
     const textareaRef = useRef(null);
-    useEffect(() => {
-        // Focus on the textarea when the component mounts or when messageInput changes
-        if (textareaRef.current) {
-            textareaRef.current.focus();
-        }
-    }, [messageInput]); // Add messageInput as a dependency
+
 
     const onChatOptions = () => {
         setChatOptions(!chatOptions);
@@ -323,25 +399,19 @@ ${parseMessageFromStructuralMessage(message)}
         setMessageInput(e.target.value);
     };
 
+
     function openForwardMessageModal() {
-        /*setModalComponent(
+        setModalComponent(
             <ForwardMessageModal
-                onSendMessageUsingForward={async (e) => {
-                    forwardMessage({
-                        chatId: e,
-                        name: selectedMessage.user.fullName,
-                        message: selectedMessage.text
-                    });
+                onForwardMessage={async (groupId) => {
+                    await forwardMessage(groupId);
+
                 }}
-                onSendMessageUsingForwardCustomer={async (e) => {
-                    forwardMessageCustomer({
-                        chatId: e,
-                        name: selectedMessage.user.fullName,
-                        message: selectedMessage.text
-                    });
+                closeModal={async (e) => {
+                    setIsModalOpen(false)
                 }}
             />
-        );*/
+        );
         setIsModalOpen(true);
     }
 
@@ -360,8 +430,8 @@ ${parseMessageFromStructuralMessage(message)}
                     <div ref={menuRef} className="context-menu message-action-menu"
                          style={{width: menuWidth, top: menuPosition.y, left: menuPosition.x}}>
                         <ul>
-                            <li className="disabled" onClick={() => {
-                                // openForwardMessageModal();
+                            <li  onClick={() => {
+                                openForwardMessageModal();
                             }}>ارسال پیام
                             </li>
                             <li onClick={() => {
@@ -434,7 +504,13 @@ ${parseMessageFromStructuralMessage(message)}
 
     return (
         <React.Fragment>
-
+            <ModalHelper
+                size={"sm"}
+                open={isModalOpen}
+                onOpen={() => setIsModalOpen(true)}
+                onClose={() => setIsModalOpen(false)}
+                component={modalComponent}
+            />
             <MessageActionMenu />
             <FixedHeader title={activeChatGroupName || 'چت'} useBack={true} onTitleClick={() =>{
                 // navigate('/chat-detail/sssss')
@@ -499,6 +575,8 @@ ${parseMessageFromStructuralMessage(message)}
                                 </div>
                                 <div className=" chat-message-rail">
                                     <div className="nk-chat-panel chat-message-container" onScroll={handleScroll}>
+
+
 
                                         {
                                             activeChatMessages?.length > 0 ?
