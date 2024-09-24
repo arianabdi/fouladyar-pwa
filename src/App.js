@@ -57,19 +57,11 @@ const App = () => {
 
 
     const dispatch = useDispatch();
-
-    const navigate = useNavigate();
-    // Redux Selector
-    const socket = useSelector((state) => state.socket.socket);
-    const profile = useSelector((state) => state.profile);
-    // const chats = useSelector(selectChats);
     const token = useSelector(selectAuthToken);
     const activeChatId = useSelector(selectActiveChatId);
-    const activeChatMessages = useSelector(selectActiveChatMessages);
+
 
     useEffect(() => {
-
-
         const socket = io(process.env.REACT_APP_WEBSOCKET_URL, {
             autoConnect: true,
             secure: true,
@@ -80,6 +72,7 @@ const App = () => {
         });
 
         socket.connect()
+
         socket.on('connect', () => {
             console.log('connect', socket)
             dispatch(connectSocket(socket));

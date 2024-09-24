@@ -21,6 +21,7 @@ import {
 import {resetUnreadMessage, switchChat} from "../../../redux/store/services/socket/store/socket-actions";
 import checkAuthToken from "../../../shared/checkAuthToken";
 import {clearToken} from "../../../redux/store/services/auth/store";
+import {convertToTehranTime} from "../../../shared/convertToTehranTime";
 
 
 export function parseMessageFromStructuralMessage(customString) {
@@ -81,7 +82,7 @@ function ChatItem({item, onClick}) {
                         className={`name ${parseInt(item.unreadmessages) > 0 ? 'unreadmessage' : ''}`}>{`${item.groupname ? item.groupname : "نا شناس"}`}</div>
                     <span className="time">{
                         !item.lastMessageAt ? "-" :
-                            toFarsiNumber(ConvertDateToCalendarString(item.lastMessageAt.split(".")[0]))
+                            toFarsiNumber(ConvertDateToCalendarString(convertToTehranTime(item.lastMessageAt).split(".")[0]))
                         // toFarsiNumber(ConvertGregorianToJalali(item.lastMessageAt.split('.')[0], itemConfig.showDateTime ? itemConfig.showDateTime : false))
                     }</span>
                 </div>
