@@ -43,7 +43,7 @@ const Products = () => {
     async function getProducts() {
         try {
             setIsLoading(true)
-            const res = await axios.get(`${process.env.REACT_APP_FOULADYAR_GROUP_WP_WEBSITE_URL}/wp-json/wc/v3/products`, {
+            const res = await axios.get(`${process.env.REACT_APP_FOULADYAR_GROUP_WP_WEBSITE_URL}/wp-json/wc/v3/products?consumer_key=${process.env.REACT_APP_WOOCOMMERCE_CK_KEY}&consumer_secret=${process.env.REACT_APP_WOOCOMMERCE_CS_KEY}`, {
                 params: {
                     per_page: 20,
                 },

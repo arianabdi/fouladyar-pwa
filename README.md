@@ -36,16 +36,16 @@ sudo certbot certonly --standalone -d mobile.fouladyarapp.com
 ```agsl
 
 {
-  "apps" : [
+  "apps": [
     {
-      "name"      : "fouladyar-pwa",
-      "script"    : "npx",
+      "name": "fouladyar-pwa",
+      "script": "npx",
       "interpreter": "none",
-      "args": "sudo serve --ssl-cert /etc/letsencrypt/live/mobile.fouladyarapp.com/cert.pem --ssl-key /etc/letsencrypt/live/mobile.fouladyarapp.com/privkey.pem -s dist -l 443 --no-clipboard"
-
+      "args": "serve -s dist -l 3002 --no-clipboard"
     }
   ]
 }
+
 
 ```
 
@@ -53,7 +53,7 @@ sudo certbot certonly --standalone -d mobile.fouladyarapp.com
 
 # نصب پروژه 
 ```agsl
-bash <(curl -Ls https://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@raw.githubusercontent.com/arianabdi/asoo-dashboard/main/scripts/installation.sh --ipv4)
+GITHUB_TOKEN=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  bash <(curl -Ls https://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@raw.githubusercontent.com/arianabdi/fouladyar-pwa/main/scripts/installation.sh --ipv4)
 ```
 
 

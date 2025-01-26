@@ -5,7 +5,7 @@
       "name": "fouladyar-pwa",
       "script": "npx",
       "interpreter": "none",
-      "args": "sudo serve -s dist -l 3002 --no-clipboard"
+      "args": "serve -s dist -l 3002 --no-clipboard"
     }
   ]
 }
