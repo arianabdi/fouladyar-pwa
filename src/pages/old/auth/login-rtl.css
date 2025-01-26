@@ -1,0 +1,17 @@
+/*.has-apps-sidebar .nk-wrap .login-box{*/
+/*    padding: 0px !important;*/
+/*}*/
+.nk-content [class*="login-box"]
+{
+    padding: 0px !important;
+}
+
+.nk-wrap-nosidebar {
+    padding: 0px !important;
+}
+
+@media (min-width: 1540px) {
+    .nk-split .nk-auth-body, .nk-split .nk-auth-footer {
+        margin: auto !important;
+    }
+}
