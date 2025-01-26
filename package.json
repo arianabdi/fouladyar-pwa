@@ -92,7 +92,7 @@
     "start:reac-script": "react-scripts start",
     "build:react-script": "react-scripts build",
     "start:webpack": "webpack serve --open --config webpack.dev.js",
-    "build:webpack": "webpack --config webpack.prod.js --watch",
+    "build:webpack": "webpack --config webpack.prod.js",
     "start:prod": "pm2 start app.config.json",
     "serve": "serve -s dist -p 80",
     "test": "react-scripts test",
