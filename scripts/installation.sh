@@ -56,7 +56,7 @@ fi
 
 # Clone your GitHub repository (replace <your-github-repository-url> with your actual repository URL)
 echo "Cloning your project..."
-git clone "https://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@github.com/arianabdi/fouladyar-pwa.git"
+git clone "https://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@github.com/arianabdi/fouladyar-pwa.git"
 
 
 
