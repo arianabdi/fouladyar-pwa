@@ -54,11 +54,17 @@ if ! command -v serve &>/dev/null; then
 fi
 
 
-# Clone your GitHub repository (replace <your-github-repository-url> with your actual repository URL)
+# Prompt user for GitHub token if not provided as an environment variable
+if [ -z "$GITHUB_TOKEN" ]; then
+  read -sp "Enter your GitHub token: " GITHUB_TOKEN
+  echo
+fi
+
+# Clone your GitHub repository using the token
 echo "Cloning your project..."
-git clone "https://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@github.com/arianabdi/fouladyar-pwa.git"
+git clone "https://${GITHUB_TOKEN}@github.com/arianabdi/fouladyar-pwa.git"
 
-
+# Proceed with the rest of your script...
 
 # Navigate to the project directory
 cd fouladyar-pwa
